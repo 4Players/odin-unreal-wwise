@@ -2,6 +2,8 @@
 
 This Unreal Engine sample project shows how to implement and use a class that passes the [Odin Voice Chat](https://www.4players.io/odin/)'s data to the [Wwise Audio Engine](https://www.audiokinetic.com/en/library/edge/?source=UE4&id=index.html).
 
+![Wwise and Odin](/Documentation/wwise_with_odin_header.jpg)
+
 ## Pre-requisities
 
 To be able to use the project you will need to have access to the Wwise Software Suite and their Unreal Plugin. You can get them [here](https://www.audiokinetic.com/en/library/edge/?source=UE4&id=index.html).
