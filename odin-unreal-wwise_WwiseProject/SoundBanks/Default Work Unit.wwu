@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{587A811F-2EB5-429A-A17C-E879C7B2AC8B}" SchemaVersion="119">
+	<SoundBanks>
+		<WorkUnit Name="Default Work Unit" ID="{587A811F-2EB5-429A-A17C-E879C7B2AC8B}" PersistMode="Standalone">
+			<ChildrenList>
+				<SoundBank Name="VoiceChat" ID="{C5683A6A-9E22-4307-92A9-5321CCA02793}">
+					<ObjectInclusionList>
+						<ObjectRef Name="Play_VoiceChat" ID="{2E0D5CC1-92BE-4489-9286-A673AA8F62FE}" WorkUnitID="{D9190437-CD8B-414A-9919-F7494B6247FC}" Origin="Manual" Filter="7"/>
+					</ObjectInclusionList>
+					<ObjectExclusionList/>
+					<GameSyncExclusionList/>
+				</SoundBank>
+			</ChildrenList>
+		</WorkUnit>
+	</SoundBanks>
+</WwiseDocument>

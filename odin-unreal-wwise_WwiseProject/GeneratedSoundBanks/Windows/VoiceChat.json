@@ -1,0 +1,49 @@
+{
+ "SoundBanksInfo": {
+  "Platform": "Windows",
+  "BasePlatform": "Windows",
+  "SchemaVersion": "16",
+  "SoundBankVersion": "150",
+  "SoundBanks": [
+   {
+    "Id": "3714668367",
+    "Type": "User",
+    "GUID": "{C5683A6A-9E22-4307-92A9-5321CCA02793}",
+    "Language": "SFX",
+    "Hash": "{AA2611A9-E4CA-7E0D-6CE7-29A7784CC007}",
+    "ObjectPath": "\\SoundBanks\\Default Work Unit\\VoiceChat",
+    "ShortName": "VoiceChat",
+    "Path": "VoiceChat.bnk",
+    "Plugins": {
+     "Custom": [
+      {
+       "Id": "948841789",
+       "Name": "Audio Input",
+       "ObjectPath": "\\Actor-Mixer Hierarchy\\Default Work Unit\\VoiceChat\\Audio Input",
+       "GUID": "{3559A357-FD2B-4F46-BECB-2549F9978A20}",
+       "LibName": "Wwise Audio Input",
+       "LibId": "13107202"
+      }
+     ]
+    },
+    "Events": [
+     {
+      "Id": "4260736938",
+      "Name": "Play_VoiceChat",
+      "ObjectPath": "\\Events\\Default Work Unit\\Play_VoiceChat",
+      "GUID": "{2E0D5CC1-92BE-4489-9286-A673AA8F62FE}",
+      "DurationType": "Unknown",
+      "PluginRefs": {
+       "Custom": [
+        {
+         "Id": "948841789"
+        }
+       ]
+      }
+     }
+    ]
+   }
+  ],
+  "FileHash": "{71E17350-6D1C-1890-6081-2BA927ED16A1}"
+ }
+}

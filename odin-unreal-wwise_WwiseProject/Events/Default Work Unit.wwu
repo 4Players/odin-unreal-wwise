@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{D9190437-CD8B-414A-9919-F7494B6247FC}" SchemaVersion="119">
+	<Events>
+		<WorkUnit Name="Default Work Unit" ID="{D9190437-CD8B-414A-9919-F7494B6247FC}" PersistMode="Standalone">
+			<ChildrenList>
+				<Event Name="Play_VoiceChat" ID="{2E0D5CC1-92BE-4489-9286-A673AA8F62FE}">
+					<ChildrenList>
+						<Action Name="" ID="{B60A2074-1823-4E30-9BBD-CC035AD71409}" ShortID="1033757127">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="VoiceChat" ID="{53E37E35-72A1-462F-A91D-A09DABEC80FA}" WorkUnitID="{87592E86-5381-466C-9314-025C4C448A42}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+			</ChildrenList>
+		</WorkUnit>
+	</Events>
+</WwiseDocument>

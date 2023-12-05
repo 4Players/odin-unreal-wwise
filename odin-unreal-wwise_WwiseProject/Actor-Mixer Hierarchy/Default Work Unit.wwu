@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{87592E86-5381-466C-9314-025C4C448A42}" SchemaVersion="119">
+	<AudioObjects>
+		<WorkUnit Name="Default Work Unit" ID="{87592E86-5381-466C-9314-025C4C448A42}" PersistMode="Standalone">
+			<ChildrenList>
+				<Sound Name="VoiceChat" ID="{53E37E35-72A1-462F-A91D-A09DABEC80FA}" ShortID="147477337">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="PCM As Input" ID="{E712A671-9647-44EF-8B1B-857926D620F0}" WorkUnitID="{F6B2880C-85E5-47FA-A126-645B5DFD9ACC}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{57CEBEEA-5BC6-48AD-B184-B81F088550C2}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<SourcePlugin Name="Audio Input" ID="{3559A357-FD2B-4F46-BECB-2549F9978A20}" ShortID="948841789" PluginName="Wwise Audio Input" CompanyID="0" PluginID="200">
+							<Language>SFX</Language>
+						</SourcePlugin>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="Audio Input" ID="{3559A357-FD2B-4F46-BECB-2549F9978A20}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+			</ChildrenList>
+		</WorkUnit>
+	</AudioObjects>
+</WwiseDocument>
