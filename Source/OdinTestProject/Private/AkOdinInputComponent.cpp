@@ -6,7 +6,6 @@
 #include "OdinFunctionLibrary.h"
 #include "OdinMediaSoundGenerator.h"
 #include "OdinPlaybackMedia.h"
-#include "OdinCore/include/odin.h"
 
 UAkOdinInputComponent::UAkOdinInputComponent(const FObjectInitializer& ObjectInitializer) : UAkAudioInputComponent(
 	ObjectInitializer)
