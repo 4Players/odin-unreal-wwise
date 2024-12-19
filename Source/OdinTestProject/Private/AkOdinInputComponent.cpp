@@ -6,6 +6,7 @@
 #include "OdinFunctionLibrary.h"
 #include "OdinMediaSoundGenerator.h"
 #include "OdinPlaybackMedia.h"
+#include "OdinInitializationSubsystem.h"
 
 UAkOdinInputComponent::UAkOdinInputComponent(const FObjectInitializer& ObjectInitializer) : UAkAudioInputComponent(
 	ObjectInitializer)
@@ -37,12 +38,26 @@ void UAkOdinInputComponent::AssignOdinMedia(UOdinPlaybackMedia*& Media)
 
 void UAkOdinInputComponent::GetChannelConfig(AkAudioFormat& AudioFormat)
 {
+	int NumChannels = 1;
+	int SampleRate = 48000;
+
+	if (GetWorld() && GetWorld()->GetGameInstance()) {
+		const UOdinInitializationSubsystem* OdinInitSubsystem =
+			GetWorld()->GetGameInstance()->GetSubsystem<UOdinInitializationSubsystem>();
+		if (OdinInitSubsystem) {
+			NumChannels = OdinInitSubsystem->GetChannelCount();
+			SampleRate = OdinInitSubsystem->GetSampleRate();
+		}
+	}
+
 	AkChannelConfig ChannelConfig;
-	ChannelConfig.SetStandard(AK_SPEAKER_SETUP_STEREO);
+	ChannelConfig.SetStandard(AK::ChannelMaskFromNumChannels(NumChannels));
+
+	UE_LOG(LogTemp, Warning, TEXT("Initializing Ak Odin Input Component with %i channels and Sample Rate of %i"), NumChannels, SampleRate);
 
 	// set audio format
 	AudioFormat.SetAll(
-		48000, // Sample rate
+		SampleRate, // Sample rate
 		ChannelConfig, // \ref AkChannelConfig
 		8 * sizeof(float), // Bits per samples
 		sizeof(float), // Block Align = 4 Bytes? Shouldn't it be 2*4=8 Bytes, because of two channels?
