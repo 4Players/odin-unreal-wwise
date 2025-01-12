@@ -3,14 +3,14 @@
   "Platform": "Windows",
   "BasePlatform": "Windows",
   "SchemaVersion": "16",
-  "SoundBankVersion": "150",
+  "SoundBankVersion": "154",
   "SoundBanks": [
    {
     "Id": "3714668367",
     "Type": "User",
     "GUID": "{C5683A6A-9E22-4307-92A9-5321CCA02793}",
     "Language": "SFX",
-    "Hash": "{AA2611A9-E4CA-7E0D-6CE7-29A7784CC007}",
+    "Hash": "{AD8853A9-AD82-7582-AD18-8D82A0D75952}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\VoiceChat",
     "ShortName": "VoiceChat",
     "Path": "VoiceChat.bnk",
@@ -44,6 +44,6 @@
     ]
    }
   ],
-  "FileHash": "{71E17350-6D1C-1890-6081-2BA927ED16A1}"
+  "FileHash": "{8211AFBD-9C00-9EFF-B83A-8DA000FFA129}"
  }
 }

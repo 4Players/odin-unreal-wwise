@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="16" SoundBankVersion="150">
+<SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="16" SoundBankVersion="154">
 	<SoundBanks>
-		<SoundBank Id="3714668367" Type="User" GUID="{C5683A6A-9E22-4307-92A9-5321CCA02793}" Language="SFX" Hash="{AA2611A9-E4CA-7E0D-6CE7-29A7784CC007}">
+		<SoundBank Id="3714668367" Type="User" GUID="{C5683A6A-9E22-4307-92A9-5321CCA02793}" Language="SFX" Hash="{AD8853A9-AD82-7582-AD18-8D82A0D75952}">
 			<ObjectPath>\SoundBanks\Default Work Unit\VoiceChat</ObjectPath>
 			<ShortName>VoiceChat</ShortName>
 			<Path>VoiceChat.bnk</Path>
@@ -21,5 +21,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{234F8F4A-E29E-359E-2408-D2A4CC3FA15E}</FileHash>
+	<FileHash>{029C99C9-84E0-9C3F-030A-CE60A782D0D6}</FileHash>
 </SoundBanksInfo>

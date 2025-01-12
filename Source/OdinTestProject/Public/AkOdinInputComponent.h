@@ -13,16 +13,14 @@ class OdinMediaSoundGenerator;
 class UOdinPlaybackMedia;
 
 UCLASS(BlueprintType, Blueprintable, meta = (BlueprintSpawnableComponent))
-class ODINTESTPROJECT_API UAkOdinInputComponent : public UAkAudioInputComponent
+class UAkOdinInputComponent : public UAkAudioInputComponent
 {
 	GENERATED_BODY()
 
 public:
 	// Sets default values for this component's properties
 	UAkOdinInputComponent(const class FObjectInitializer& ObjectInitializer);
-
-	virtual void DestroyComponent(bool bPromoteChildren) override;
-
+	
 	UFUNCTION(BlueprintCallable, Category = "Odin|Sound")
 	void AssignOdinMedia(UPARAM(ref) UOdinPlaybackMedia*& Media);
 
@@ -33,7 +31,6 @@ protected:
 	UPROPERTY(BlueprintReadOnly, Category = "Odin|Sound")
 	UOdinPlaybackMedia* PlaybackMedia = nullptr;
 	TSharedPtr<OdinMediaSoundGenerator, ESPMode::ThreadSafe> SoundGenerator;
-
-	float* Buffer = nullptr;
-	int32 BufferSize = 0;
+	UPROPERTY()
+	TArray<float> Buffer;
 };

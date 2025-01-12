@@ -3,14 +3,14 @@
   "Platform": "Mac",
   "BasePlatform": "Mac",
   "SchemaVersion": "16",
-  "SoundBankVersion": "150",
+  "SoundBankVersion": "154",
   "SoundBanks": [
    {
     "Id": "3714668367",
     "Type": "User",
     "GUID": "{C5683A6A-9E22-4307-92A9-5321CCA02793}",
     "Language": "SFX",
-    "Hash": "{AA2611A9-E4CA-7E0D-6CE7-29A7784CC007}",
+    "Hash": "{AD8853A9-AD82-7582-AD18-8D82A0D75952}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\VoiceChat",
     "ShortName": "VoiceChat",
     "Path": "VoiceChat.bnk",
@@ -44,6 +44,6 @@
     ]
    }
   ],
-  "FileHash": "{86E5F05F-D745-59D6-5635-9B01EAE45616}"
+  "FileHash": "{704B5F59-B199-8C4C-8F95-95712176F936}"
  }
 }

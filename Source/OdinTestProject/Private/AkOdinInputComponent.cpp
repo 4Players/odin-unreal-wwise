@@ -14,16 +14,6 @@ UAkOdinInputComponent::UAkOdinInputComponent(const FObjectInitializer& ObjectIni
 	PrimaryComponentTick.bCanEverTick = true;
 }
 
-void UAkOdinInputComponent::DestroyComponent(bool bPromoteChildren)
-{
-	Super::DestroyComponent(bPromoteChildren);
-	if (nullptr != Buffer)
-	{
-		delete Buffer;
-		Buffer = nullptr;
-		BufferSize = 0;
-	}
-}
 
 void UAkOdinInputComponent::AssignOdinMedia(UOdinPlaybackMedia*& Media)
 {
@@ -38,13 +28,12 @@ void UAkOdinInputComponent::AssignOdinMedia(UOdinPlaybackMedia*& Media)
 
 void UAkOdinInputComponent::GetChannelConfig(AkAudioFormat& AudioFormat)
 {
-	int NumChannels = 1;
-	int SampleRate = 48000;
+	int NumChannels = ODIN_DEFAULT_CHANNEL_COUNT;
+	int SampleRate = ODIN_DEFAULT_SAMPLE_RATE;
 
 	if (GetWorld() && GetWorld()->GetGameInstance()) {
-		const UOdinInitializationSubsystem* OdinInitSubsystem =
-			GetWorld()->GetGameInstance()->GetSubsystem<UOdinInitializationSubsystem>();
-		if (OdinInitSubsystem) {
+		if (const UOdinInitializationSubsystem* OdinInitSubsystem =
+			GetWorld()->GetGameInstance()->GetSubsystem<UOdinInitializationSubsystem>()) {
 			NumChannels = OdinInitSubsystem->GetChannelCount();
 			SampleRate = OdinInitSubsystem->GetSampleRate();
 		}
@@ -72,15 +61,12 @@ bool UAkOdinInputComponent::FillSamplesBuffer(uint32 NumChannels, uint32 NumSamp
 		return false;
 
 	const int32 RequestedTotalSamples = NumChannels * NumSamples;
-	if (BufferSize != RequestedTotalSamples)
+	if (Buffer.Num() != RequestedTotalSamples)
 	{
-		if (nullptr != Buffer)
-			delete Buffer;
-		Buffer = new float[RequestedTotalSamples];
-		BufferSize = RequestedTotalSamples;
+		Buffer.SetNum(RequestedTotalSamples);
 	}
 
-	const uint32 Result = SoundGenerator->OnGenerateAudio(Buffer, RequestedTotalSamples);
+	const uint32 Result = SoundGenerator->OnGenerateAudio(Buffer.GetData(), RequestedTotalSamples);
 	if (odin_is_error(Result))
 	{
 		FString ErrorString = UOdinFunctionLibrary::FormatError(Result, true);
@@ -95,7 +81,6 @@ bool UAkOdinInputComponent::FillSamplesBuffer(uint32 NumChannels, uint32 NumSamp
 			BufferToFill[c][s] = Buffer[s * NumChannels + c];
 		}
 	}
-
-
+	
 	return true;
 }

@@ -3,10 +3,10 @@
   "Platform": "Windows",
   "BasePlatform": "Windows",
   "SchemaVersion": "16",
-  "SoundBankVersion": "150",
+  "SoundBankVersion": "154",
   "RootPaths": {
    "ProjectRoot": "../..",
-   "SourceFilesRoot": "../../.cache/Windows",
+   "SourceFilesRoot": "../../.cache",
    "SoundBanksRoot": ".",
    "ExternalSourcesInputFile": "",
    "ExternalSourcesOutputRoot": "."
@@ -18,7 +18,7 @@
     "Type": "User",
     "GUID": "{701ECBBD-9C7B-4030-8CDB-749EE5D1C7B9}",
     "Language": "SFX",
-    "Hash": "{EA5C9EB4-9F09-036D-82B5-431F57A2DDB9}",
+    "Hash": "{3220B444-D3E7-757D-E2E4-5229E422C42E}",
     "ObjectPath": "Init",
     "ShortName": "Init",
     "Path": "Init.bnk",
@@ -56,7 +56,7 @@
     "Type": "User",
     "GUID": "{C5683A6A-9E22-4307-92A9-5321CCA02793}",
     "Language": "SFX",
-    "Hash": "{AA2611A9-E4CA-7E0D-6CE7-29A7784CC007}",
+    "Hash": "{AD8853A9-AD82-7582-AD18-8D82A0D75952}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\VoiceChat",
     "ShortName": "VoiceChat",
     "Path": "VoiceChat.bnk",
@@ -90,6 +90,6 @@
     ]
    }
   ],
-  "FileHash": "{77154DBF-525D-A4AB-42DE-868422E923A2}"
+  "FileHash": "{C790A6CB-5458-2537-43AB-2165E3406C6B}"
  }
 }
