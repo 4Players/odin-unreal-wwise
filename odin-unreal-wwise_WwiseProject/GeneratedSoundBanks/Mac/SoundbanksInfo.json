@@ -18,7 +18,7 @@
     "Type": "User",
     "GUID": "{701ECBBD-9C7B-4030-8CDB-749EE5D1C7B9}",
     "Language": "SFX",
-    "Hash": "{8639C883-B5AE-9D75-5063-2956D504F2C9}",
+    "Hash": "{B7650239-FE41-1E2A-EE22-7908002887BE}",
     "ObjectPath": "Init",
     "ShortName": "Init",
     "Path": "Init.bnk",
@@ -56,7 +56,7 @@
     "Type": "User",
     "GUID": "{C5683A6A-9E22-4307-92A9-5321CCA02793}",
     "Language": "SFX",
-    "Hash": "{AD8853A9-AD82-7582-AD18-8D82A0D75952}",
+    "Hash": "{1C3B23B8-8907-D80D-F4FC-1851E47F3050}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\VoiceChat",
     "ShortName": "VoiceChat",
     "Path": "VoiceChat.bnk",
@@ -78,6 +78,7 @@
       "Name": "Play_VoiceChat",
       "ObjectPath": "\\Events\\Default Work Unit\\Play_VoiceChat",
       "GUID": "{2E0D5CC1-92BE-4489-9286-A673AA8F62FE}",
+      "MaxAttenuation": "10000",
       "DurationType": "Unknown",
       "PluginRefs": {
        "Custom": [
@@ -90,6 +91,6 @@
     ]
    }
   ],
-  "FileHash": "{D84345C3-68CE-642F-83D0-59886302D4D3}"
+  "FileHash": "{2776DE85-7B19-6521-A6F1-5EEEFBB1E864}"
  }
 }

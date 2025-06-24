@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SoundBanksInfo Platform="Mac" BasePlatform="Mac" SchemaVersion="16" SoundBankVersion="154">
 	<SoundBanks>
-		<SoundBank Id="3714668367" Type="User" GUID="{C5683A6A-9E22-4307-92A9-5321CCA02793}" Language="SFX" Hash="{AD8853A9-AD82-7582-AD18-8D82A0D75952}">
+		<SoundBank Id="3714668367" Type="User" GUID="{C5683A6A-9E22-4307-92A9-5321CCA02793}" Language="SFX" Hash="{1C3B23B8-8907-D80D-F4FC-1851E47F3050}">
 			<ObjectPath>\SoundBanks\Default Work Unit\VoiceChat</ObjectPath>
 			<ShortName>VoiceChat</ShortName>
 			<Path>VoiceChat.bnk</Path>
@@ -11,7 +11,7 @@
 				</Custom>
 			</Plugins>
 			<Events>
-				<Event Id="4260736938" Name="Play_VoiceChat" ObjectPath="\Events\Default Work Unit\Play_VoiceChat" GUID="{2E0D5CC1-92BE-4489-9286-A673AA8F62FE}" DurationType="Unknown">
+				<Event Id="4260736938" Name="Play_VoiceChat" ObjectPath="\Events\Default Work Unit\Play_VoiceChat" GUID="{2E0D5CC1-92BE-4489-9286-A673AA8F62FE}" MaxAttenuation="10000" DurationType="Unknown">
 					<PluginRefs>
 						<Custom>
 							<PluginRef Id="948841789"/>
@@ -21,5 +21,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{773CE2D5-D191-36B3-4C17-B6CA52CAD4E1}</FileHash>
+	<FileHash>{4B3CF5E4-D40A-B89E-AEF2-6E5430DAA63E}</FileHash>
 </SoundBanksInfo>

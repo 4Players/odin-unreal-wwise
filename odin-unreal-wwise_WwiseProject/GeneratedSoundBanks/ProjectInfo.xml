@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ProjectInfo>
-	<Project Name="odin-unreal-wwise_WwiseProject" GUID="{DB5D7FC3-BC6F-4C10-B3E0-CF52132AE20E}" Generator="2024.1.1.8691"/>
+	<Project Name="odin-unreal-wwise_WwiseProject" GUID="{DB5D7FC3-BC6F-4C10-B3E0-CF52132AE20E}" Generator="2024.1.5.8803"/>
 	<CacheRoot>../.cache</CacheRoot>
 	<Platforms>
 		<Platform Name="Mac" GUID="{4B184017-3C3F-4CDA-977B-C05F3B3045C5}" BasePlatform="Mac" BasePlatformGUID="{9C6217D5-DD11-4795-87C1-6CE02853C540}" Path="Mac"/>
@@ -9,5 +9,5 @@
 	<Languages>
 		<Language Name="English(US)" Id="684519430" GUID="{D42B1852-D1D3-48C3-A20C-C029583711B6}" Default="true" UseAsStandIn="true"/>
 	</Languages>
-	<FileHash>{835C5079-BDDE-307F-FCB4-DCD873B8E0D6}</FileHash>
+	<FileHash>{95DD97C3-A876-F005-746B-CC3953C3275E}</FileHash>
 </ProjectInfo>
