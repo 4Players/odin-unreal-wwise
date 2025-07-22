@@ -15,6 +15,7 @@
 void UOdinAudioCapture::BeginDestroy()
 {
     Super::BeginDestroy();
+    UE_LOG(Odin, Verbose, TEXT("UOdinAudioCapture::BeginDestroy()"));
     AudioCapture.CloseStream();
     StopCapturingAudio();
 }
@@ -477,11 +478,22 @@ bool UOdinAudioCapture::RestartCapturing(bool bAutomaticallyStartCapture)
 
     Audio::FAudioCaptureDeviceParams Params;
     Params.DeviceIndex = CurrentSelectedDeviceIndex;
+
+    const int32 SelectedDeviceOptimalFrames =
+        CurrentSelectedDevice.AudioCaptureInfo.SampleRate
+        * CurrentSelectedDevice.AudioCaptureInfo.NumInputChannels * (20.0f / 1000.0f);
+
 #if ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION >= 3
-    bool bSuccess = AudioCapture.OpenAudioCaptureStream(Params, MoveTemp(OnCapture), 1024);
+    bool bSuccess = AudioCapture.OpenAudioCaptureStream(Params, MoveTemp(OnCapture),
+                                                        SelectedDeviceOptimalFrames);
 #else
-    bool bSuccess = AudioCapture.OpenCaptureStream(Params, MoveTemp(OnCapture), 1024);
+    bool bSuccess =
+        AudioCapture.OpenCaptureStream(Params, MoveTemp(OnCapture), SelectedDeviceOptimalFrames);
 #endif
+
+    UE_LOG(Odin, Verbose,
+           TEXT("Selected Device Optimal Frames: %d, Choosing ODIN-preferred NumFramesDesired: %d"),
+           SelectedDeviceOptimalFrames, SelectedDeviceOptimalFrames);
     // OpenCaptureStream automatically closes the capture stream, if it's already active.
     if (bSuccess) {
         // If we opened the capture stream successfully, get the capture device info and initialize
@@ -519,7 +531,7 @@ bool UOdinAudioCapture::GetIsPaused() const
 
 void UOdinAudioCapture::SetIsPaused(bool bNewValue)
 {
-    SetVolumeMultiplier(bNewValue);
+    SetIsMuted(bNewValue);
 }
 
 bool UOdinAudioCapture::GetIsMuted() const
