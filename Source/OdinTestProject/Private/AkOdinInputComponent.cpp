@@ -62,12 +62,21 @@ bool UAkOdinInputComponent::FillSamplesBuffer(uint32 NumChannels, uint32 NumSamp
 {
 	if (!SoundGenerator || !PlaybackMedia)
 		return false;
-	
+
 	const int32 RequestedTotalSamples = NumChannels * NumSamples;
-	if (Buffer.Num() != RequestedTotalSamples)
+
+	if (GetIsMuted())
 	{
-		Buffer.SetNum(RequestedTotalSamples);
+		Buffer.SetNumZeroed(RequestedTotalSamples, EAllowShrinking::No);
 	}
+	else
+	{
+		if (Buffer.Num() != RequestedTotalSamples)
+		{
+			Buffer.SetNum(RequestedTotalSamples, EAllowShrinking::No);
+		}
+	}
+
 
 	const uint32 Result = SoundGenerator->OnGenerateAudio(Buffer.GetData(), RequestedTotalSamples);
 	if (odin_is_error(Result))
@@ -86,4 +95,20 @@ bool UAkOdinInputComponent::FillSamplesBuffer(uint32 NumChannels, uint32 NumSamp
 	}
 
 	return true;
+}
+
+bool UAkOdinInputComponent::GetIsMuted() const
+{
+	return bIsMuted;
+}
+
+void UAkOdinInputComponent::SetIsMuted(bool bNewIsMuted)
+{
+	bIsMuted = bNewIsMuted;
+	if (VoiceActivityRtpc)
+	{
+		const int32 VoiceActivitySetting = bIsMuted ? 0 : 1;
+		SetRTPCValue(VoiceActivityRtpc, VoiceActivitySetting, 0,
+		             VoiceActivityRtpc->GetWwiseName().ToString());
+	}
 }

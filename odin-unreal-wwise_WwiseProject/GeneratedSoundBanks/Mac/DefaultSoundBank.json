@@ -1,0 +1,57 @@
+{
+ "SoundBanksInfo": {
+  "Platform": "Mac",
+  "BasePlatform": "Mac",
+  "SchemaVersion": "16",
+  "SoundBankVersion": "154",
+  "SoundBanks": [
+   {
+    "Id": "1675065207",
+    "Type": "User",
+    "GUID": "{C54580C3-3580-4A53-8E21-D3DBBA7349B4}",
+    "Language": "SFX",
+    "Hash": "{59D9A000-55DD-DAFF-1F5D-4B826F86B05B}",
+    "ObjectPath": "\\SoundBanks\\Default Work Unit\\DefaultSoundBank",
+    "ShortName": "DefaultSoundBank",
+    "Path": "DefaultSoundBank.bnk",
+    "Plugins": {
+     "Custom": [
+      {
+       "Id": "756893708",
+       "Name": "Audio Input",
+       "ObjectPath": "\\Actor-Mixer Hierarchy\\Default Work Unit\\VoiceChat\\Audio Input",
+       "GUID": "{9CDE42BC-7F26-4C31-80B6-DCD2202CCA9C}",
+       "LibName": "Wwise Audio Input",
+       "LibId": "13107202"
+      }
+     ]
+    },
+    "Events": [
+     {
+      "Id": "4260736938",
+      "Name": "Play_VoiceChat",
+      "ObjectPath": "\\Events\\Default Work Unit\\Play_VoiceChat",
+      "GUID": "{A871243F-552A-4083-B348-1039C14FDC2D}",
+      "DurationType": "Unknown",
+      "PluginRefs": {
+       "Custom": [
+        {
+         "Id": "756893708"
+        }
+       ]
+      }
+     }
+    ],
+    "GameParameters": [
+     {
+      "Id": "2322230370",
+      "Name": "OdinVoiceActivity",
+      "ObjectPath": "\\Game Parameters\\Default Work Unit\\OdinVoiceActivity",
+      "GUID": "{C682F33F-60C3-46B4-868C-ADF1169C56E5}"
+     }
+    ]
+   }
+  ],
+  "FileHash": "{9988ED43-CB83-10C1-285D-06DA238B1392}"
+ }
+}

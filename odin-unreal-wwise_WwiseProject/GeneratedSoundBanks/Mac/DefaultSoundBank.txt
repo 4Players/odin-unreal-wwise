@@ -1,0 +1,9 @@
+Event	ID	Name			Wwise Object Path	Notes
+	4260736938	Play_VoiceChat			\Default Work Unit\Play_VoiceChat	
+
+Game Parameter	ID	Name			Wwise Object Path	Notes
+	2322230370	OdinVoiceActivity			\Default Work Unit\OdinVoiceActivity	
+
+Source plug-ins	ID	Name	Type		Wwise Object Path	Notes
+	756893708	Audio Input	Wwise Audio Input		\Actor-Mixer Hierarchy\Default Work Unit\VoiceChat\Audio Input	
+

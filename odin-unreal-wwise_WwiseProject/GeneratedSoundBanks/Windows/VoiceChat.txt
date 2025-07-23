@@ -1,6 +1,0 @@
-Event	ID	Name			Wwise Object Path	Notes
-	4260736938	Play_VoiceChat			\Default Work Unit\Play_VoiceChat	
-
-Source plug-ins	ID	Name	Type		Wwise Object Path	Notes
-	948841789	Audio Input	Wwise Audio Input		\Actor-Mixer Hierarchy\Default Work Unit\VoiceChat\Audio Input	
-

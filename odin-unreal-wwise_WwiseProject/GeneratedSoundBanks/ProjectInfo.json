@@ -2,21 +2,21 @@
  "ProjectInfo": {
   "Project": {
    "Name": "odin-unreal-wwise_WwiseProject",
-   "GUID": "{DB5D7FC3-BC6F-4C10-B3E0-CF52132AE20E}",
+   "GUID": "{86A8E838-7FD5-4A60-8F4B-4E2AF819049C}",
    "Generator": "2024.1.6.8842"
   },
   "CacheRoot": "../.cache",
   "Platforms": [
    {
     "Name": "Mac",
-    "GUID": "{4B184017-3C3F-4CDA-977B-C05F3B3045C5}",
+    "GUID": "{5C7A64D9-039F-4A38-A82A-BFA691607FE3}",
     "BasePlatform": "Mac",
     "BasePlatformGUID": "{9C6217D5-DD11-4795-87C1-6CE02853C540}",
     "Path": "Mac"
    },
    {
     "Name": "Windows",
-    "GUID": "{62E3FEF9-1496-40BB-B682-03FD9A1C9418}",
+    "GUID": "{F7B9D643-C984-4822-8AB2-5B00783A1B9D}",
     "BasePlatform": "Windows",
     "BasePlatformGUID": "{6E0CB257-C6C8-4C5C-8366-2740DFC441EB}",
     "Path": "Windows"
@@ -26,11 +26,11 @@
    {
     "Name": "English(US)",
     "Id": "684519430",
-    "GUID": "{D42B1852-D1D3-48C3-A20C-C029583711B6}",
+    "GUID": "{F5D37B3A-CD95-48CB-9AB3-2BDD61A14D05}",
     "Default": "true",
     "UseAsStandIn": "true"
    }
   ],
-  "FileHash": "{FA9BD2EE-01FB-3CC4-55D3-59C5ED4D08C8}"
+  "FileHash": "{7C495C85-341A-96BB-C664-01E2B93E8751}"
  }
 }

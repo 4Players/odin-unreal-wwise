@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<WwiseDocument Type="WorkUnit" ID="{D9190437-CD8B-414A-9919-F7494B6247FC}" SchemaVersion="123">
+<WwiseDocument Type="WorkUnit" ID="{049C06C7-D6FC-4C69-8BEF-09D30C20041B}" SchemaVersion="123">
 	<Events>
-		<WorkUnit Name="Default Work Unit" ID="{D9190437-CD8B-414A-9919-F7494B6247FC}" PersistMode="Standalone">
+		<WorkUnit Name="Default Work Unit" ID="{049C06C7-D6FC-4C69-8BEF-09D30C20041B}" PersistMode="Standalone">
 			<ChildrenList>
-				<Event Name="Play_VoiceChat" ID="{2E0D5CC1-92BE-4489-9286-A673AA8F62FE}">
+				<Event Name="Play_VoiceChat" ID="{A871243F-552A-4083-B348-1039C14FDC2D}">
 					<ChildrenList>
-						<Action Name="" ID="{B60A2074-1823-4E30-9BBD-CC035AD71409}" ShortID="1033757127">
+						<Action Name="" ID="{D92887D4-6124-4480-A492-F33E7592224D}" ShortID="136242530">
 							<ReferenceList>
 								<Reference Name="Target">
-									<ObjectRef Name="VoiceChat" ID="{53E37E35-72A1-462F-A91D-A09DABEC80FA}" WorkUnitID="{87592E86-5381-466C-9314-025C4C448A42}"/>
+									<ObjectRef Name="VoiceChat" ID="{56895183-638F-477D-AA5B-9A7FA1016212}" WorkUnitID="{144820AD-88F6-41D7-AE46-97C5C0649385}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>

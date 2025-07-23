@@ -1,18 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<WwiseDocument Type="WorkUnit" ID="{6E4FE518-5ABF-41E9-B315-A464CD43EF94}" SchemaVersion="123">
+<WwiseDocument Type="WorkUnit" ID="{EEA71840-3FBC-48DF-8157-38746014BB3A}" SchemaVersion="123">
 	<AudioDevices>
-		<WorkUnit Name="Default Work Unit" ID="{6E4FE518-5ABF-41E9-B315-A464CD43EF94}" PersistMode="Standalone">
+		<WorkUnit Name="Default Work Unit" ID="{EEA71840-3FBC-48DF-8157-38746014BB3A}" PersistMode="Standalone">
 			<ChildrenList>
-				<AudioDevice Name="System" ID="{F9F17CC2-7B30-4CE4-853C-4CE133EC4650}" PluginName="System" CompanyID="0" PluginID="174" PluginType="7">
-					<PropertyList>
-						<Property Name="Allow3DAudio" Type="bool">
-							<ValueList>
-								<Value>True</Value>
-							</ValueList>
-						</Property>
-					</PropertyList>
-				</AudioDevice>
-				<AudioDevice Name="No_Output" ID="{7451B790-C3CC-4367-AAD4-7C0998BE85C8}" PluginName="No Output" CompanyID="0" PluginID="181" PluginType="7"/>
+				<AudioDevice Name="System" ID="{38D8B1DF-3DBD-47B4-B670-34140AEBA855}" PluginName="System" CompanyID="0" PluginID="174" PluginType="7"/>
+				<AudioDevice Name="No_Output" ID="{775D540F-1FFB-4F0B-BEF5-A88640E5C402}" PluginName="No Output" CompanyID="0" PluginID="181" PluginType="7"/>
 			</ChildrenList>
 		</WorkUnit>
 	</AudioDevices>
