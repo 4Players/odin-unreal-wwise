@@ -1,5 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
+/* Copyright (c) 2022-2024 4Players GmbH. All rights reserved. */
 
 #include "AkOdinInputComponent.h"
 
@@ -7,12 +6,6 @@
 #include "OdinMediaSoundGenerator.h"
 #include "OdinPlaybackMedia.h"
 #include "OdinSubsystem.h"
-
-UAkOdinInputComponent::UAkOdinInputComponent(const FObjectInitializer& ObjectInitializer) : UAkAudioInputComponent(
-	ObjectInitializer)
-{
-	PrimaryComponentTick.bCanEverTick = true;
-}
 
 
 void UAkOdinInputComponent::AssignOdinMedia(UOdinPlaybackMedia*& Media)

@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+/* Copyright (c) 2022-2024 4Players GmbH. All rights reserved. */
 
 #pragma once
 
@@ -16,9 +16,12 @@ class UAkOdinInputComponent : public UAkAudioInputComponent, public IOdinAudioCo
 	GENERATED_BODY()
 
 public:
-	// Sets default values for this component's properties
-	UAkOdinInputComponent(const class FObjectInitializer& ObjectInitializer);
-
+	/**
+	 * Assigns a UOdinPlaybackMedia object to the component and initializes the associated sound generator.
+	 *
+	 * @param Media Reference to a pointer of a UOdinPlaybackMedia object, which will be assigned to the component.
+	 *              Must not be null for successful assignment.
+	 */
 	UFUNCTION(BlueprintCallable, Category = "Odin|Sound")
 	void AssignOdinMedia(UPARAM(ref)
 		UOdinPlaybackMedia*& Media);
@@ -26,14 +29,27 @@ public:
 	virtual void GetChannelConfig(AkAudioFormat& AudioFormat) override;
 	virtual bool FillSamplesBuffer(uint32 NumChannels, uint32 NumSamples, float** BufferToFill) override;
 
+	/**
+	 * Retrieves the muted state of the Odin audio input.
+	 *
+	 * @return True if the audio is currently muted; otherwise, false.
+	 */
 	virtual bool GetIsMuted() const override;
 	/**
-	 * 
-	 * @param bNewIsMuted 
+	 * Sets the muted state for Odin audio input.
+	 *
+	 * @note This can be used to virtualize a voice in wwise. The requirement for this is to set a valid reference for
+	 * the VoiceActivityRtpc property and set the rtpc up in a way, that it affects the Voice Volume of the Audio Input
+	 * object in Wwise. Take a look at the guide for more information on the general setup.
+	 *
+	 * @param bNewIsMuted Specifies whether to mute (true) or unmute (false) the audio.
 	 */
 	virtual void SetIsMuted(bool bNewIsMuted) override;
 
 protected:
+	/**
+	 * A pointer to an Odin playback media object used to retrieve audio from Odin.
+	 */
 	UPROPERTY(BlueprintReadOnly, Category = "Odin|Sound")
 	UOdinPlaybackMedia* PlaybackMedia = nullptr;
 	/**
@@ -42,7 +58,7 @@ protected:
 	UPROPERTY()
 	TArray<float> Buffer;
 	/**
-	 * A reference to a Wwise RTPC (Real-Time Parameter Control) object that manages the voice activity state in an Odin audio session.
+	 * A reference to a Wwise RTPC object that manages the voice activity state in an Odin audio session.
 	 */
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category="Odin|Sound")
 	UAkRtpc* VoiceActivityRtpc;

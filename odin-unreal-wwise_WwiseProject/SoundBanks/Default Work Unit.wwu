@@ -5,7 +5,7 @@
 			<ChildrenList>
 				<SoundBank Name="DefaultSoundBank" ID="{C54580C3-3580-4A53-8E21-D3DBBA7349B4}">
 					<ObjectInclusionList>
-						<ObjectRef Name="VoiceChat" ID="{56895183-638F-477D-AA5B-9A7FA1016212}" WorkUnitID="{144820AD-88F6-41D7-AE46-97C5C0649385}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Play_VoiceChat" ID="{A871243F-552A-4083-B348-1039C14FDC2D}" WorkUnitID="{049C06C7-D6FC-4C69-8BEF-09D30C20041B}" Origin="Manual" Filter="7"/>
 					</ObjectInclusionList>
 					<ObjectExclusionList/>
 					<GameSyncExclusionList/>
