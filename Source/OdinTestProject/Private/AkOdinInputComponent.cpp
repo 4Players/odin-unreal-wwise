@@ -15,8 +15,8 @@ void UAkOdinInputComponent::AssignOdinMedia(UOdinPlaybackMedia*& Media)
 
 	this->SoundGenerator = MakeShared<OdinMediaSoundGenerator, ESPMode::ThreadSafe>();
 	this->PlaybackMedia = Media;
-
-	SoundGenerator->SetOdinStream(Media->GetMediaHandle());
+	
+	SoundGenerator->SetStreamReader(Media->GetPlaybackStreamReader());
 }
 
 void UAkOdinInputComponent::GetChannelConfig(AkAudioFormat& AudioFormat)

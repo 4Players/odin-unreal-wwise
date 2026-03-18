@@ -93,8 +93,8 @@ void UOdinCaptureMedia::SetAudioGenerator(UAudioGenerator* audioGenerator)
 void UOdinCaptureMedia::Reset()
 {
     UE_LOG(Odin, Verbose, TEXT("UOdinCaptureMedia::Reset()"));
-    FScopeLock lock(&this->capture_generator_delegate_);
     if (nullptr != audio_capture_) {
+        FScopeLock lock(&this->capture_generator_delegate_);
         audio_capture_->RemoveGeneratorDelegate(audio_generator_handle_);
         audio_capture_                = nullptr;
         this->audio_generator_handle_ = {};
@@ -109,12 +109,14 @@ void UOdinCaptureMedia::Reset()
 OdinReturnCode UOdinCaptureMedia::ResetOdinStream()
 {
     UE_LOG(Odin, Verbose, TEXT("UOdinCaptureMedia::ResetOdinStream()"));
-    FScopeLock lock(&this->capture_generator_delegate_);
     if (nullptr != audio_capture_) {
+        FScopeLock lock(&this->capture_generator_delegate_);
         this->audio_capture_->RemoveGeneratorDelegate(this->audio_generator_handle_);
     }
-
-    this->audio_generator_handle_ = {};
+    {
+        FScopeLock lock(&this->capture_generator_delegate_);
+        this->audio_generator_handle_ = {};
+    }
 
     if (this->stream_handle_) {
         auto result          = odin_media_stream_destroy(this->stream_handle_);
@@ -167,6 +169,8 @@ bool UOdinCaptureMedia::GetIsMuted() const
 
 void UOdinCaptureMedia::SetIsMuted(bool bNewIsMuted)
 {
+    UE_LOG(Odin, Verbose, TEXT("UOdinCaptureMedia::SetIsMuted New Is Muted State: %s"),
+           bNewIsMuted ? TEXT("True") : TEXT("False"));
     bIsMuted = bNewIsMuted;
 }
 
@@ -257,7 +261,7 @@ void UOdinCaptureMedia::AudioGeneratorCallback(UOdinCaptureMedia*     Media,
         {
             TRACE_CPUPROFILER_EVENT_SCOPE(
                 UOdinAudioCapture::AudioGeneratorCallback : Audio Buffer Listener Callbacks);
-            for (IAudioBufferListener* AudioBufferListener : Media->AudioBufferListeners) {
+            for (IAudioBufferListener* AudioBufferListener : Media->GetAudioBufferListeners()) {
                 if (AudioBufferListener) {
                     const int32 OdinForcedNumChannels =
                         Media->GetEnableMonoMixing() ? 1 : StreamNumChannels;

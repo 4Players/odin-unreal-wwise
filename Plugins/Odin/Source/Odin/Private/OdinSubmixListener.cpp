@@ -24,6 +24,7 @@ UOdinSubmixListener::UOdinSubmixListener(const class FObjectInitializer& PCIP)
     : Super(PCIP)
     , CurrentRoomHandle(0)
 {
+    UE_LOG(Odin, Verbose, TEXT("OdinSubmixListener: Constructor Called."))
 }
 
 void UOdinSubmixListener::StartSubmixListener()
@@ -81,14 +82,6 @@ void UOdinSubmixListener::StartSubmixListener()
                TEXT("OdinSubmixListener: StartSubmixListener failed, no Active AudioDevice "
                     "available."));
         return;
-    }
-    const int32 SampleRate = AudioDeviceHandle->SampleRate;
-    if (SampleRate != OdinSampleRate) {
-        UE_LOG(Odin, Warning,
-               TEXT("OdinSubmixListener: Detected difference in sample rate: %d In Sample Rate and "
-                    "%d Odin Sample "
-                    "Rate. Echo Cancellation will not work correctly!"),
-               SampleRate, OdinSampleRate);
     }
 
     const FOnSubmixBufferListenerError ErrorDelegate =
