@@ -5,6 +5,9 @@ This Unreal Engine sample project shows how to implement and use a class that pa
 ![Wwise and Odin](/Documentation/wwise_with_odin_header.jpg)
 
 ## Pre-requisities
+> [!IMPORTANT]
+> ***main** is not guaranteed to build* use 
+[Odin V1 Wwise Adapter Branch](https://github.com/4Players/odin-unreal-wwise/tree/v1) or [Odin V2 Wwise Adapter Branch](https://github.com/4Players/odin-unreal-wwise/tree/v2)
 
 To be able to use the project you will need to have access to the Wwise Software Suite and their Unreal Plugin. You can get them [here](https://www.audiokinetic.com/en/library/edge/?source=UE4&id=index.html).
 Also you will need to install the Odin Voice Chat Plugin for Unreal, available [here](https://github.com/4Players/odin-sdk-unreal/releases) or in the [Unreal Marketplace](https://www.unrealengine.com/marketplace/en-US/product/4players-odin-sdk).

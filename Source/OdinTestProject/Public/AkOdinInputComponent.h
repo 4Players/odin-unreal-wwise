@@ -4,14 +4,13 @@
 
 #include "CoreMinimal.h"
 #include "AkAudioInputComponent.h"
-#include "OdinAudioControl.h"
 #include "AkOdinInputComponent.generated.h"
 
-class OdinMediaSoundGenerator;
-class UOdinPlaybackMedia;
+class FOdinSoundGenerator;
+class UOdinSynthComponent;
 
 UCLASS(BlueprintType, Blueprintable, meta = (BlueprintSpawnableComponent))
-class UAkOdinInputComponent : public UAkAudioInputComponent, public IOdinAudioControl
+class UAkOdinInputComponent : public UAkAudioInputComponent
 {
 	GENERATED_BODY()
 
@@ -24,7 +23,7 @@ public:
 	 */
 	UFUNCTION(BlueprintCallable, Category = "Odin|Sound")
 	void AssignOdinMedia(UPARAM(ref)
-		UOdinPlaybackMedia*& Media);
+		UOdinSynthComponent*& Media);
 
 	virtual void GetChannelConfig(AkAudioFormat& AudioFormat) override;
 	virtual bool FillSamplesBuffer(uint32 NumChannels, uint32 NumSamples, float** BufferToFill) override;
@@ -34,7 +33,7 @@ public:
 	 *
 	 * @return True if the audio is currently muted; otherwise, false.
 	 */
-	virtual bool GetIsMuted() const override;
+	virtual bool GetIsMuted() const;
 	/**
 	 * Sets the muted state for Odin audio input.
 	 *
@@ -44,14 +43,14 @@ public:
 	 *
 	 * @param bNewIsMuted Specifies whether to mute (true) or unmute (false) the audio.
 	 */
-	virtual void SetIsMuted(bool bNewIsMuted) override;
+	virtual void SetIsMuted(bool bNewIsMuted);
 
 protected:
 	/**
 	 * A pointer to an Odin playback media object used to retrieve audio from Odin.
 	 */
 	UPROPERTY(BlueprintReadOnly, Category = "Odin|Sound")
-	UOdinPlaybackMedia* PlaybackMedia = nullptr;
+	UOdinSynthComponent* PlaybackMedia = nullptr;
 	/**
 	 * A pointer to an Odin playback media object used to process or play back audio streams.
 	 */
@@ -64,6 +63,6 @@ protected:
 	UAkRtpc* VoiceActivityRtpc;
 
 
-	TSharedPtr<OdinMediaSoundGenerator, ESPMode::ThreadSafe> SoundGenerator;
+	TSharedPtr<FOdinSoundGenerator, ESPMode::ThreadSafe> SoundGenerator;
 	FThreadSafeBool bIsMuted = false;
 };

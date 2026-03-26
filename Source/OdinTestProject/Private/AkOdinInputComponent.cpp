@@ -3,36 +3,26 @@
 #include "AkOdinInputComponent.h"
 
 #include "OdinFunctionLibrary.h"
-#include "OdinMediaSoundGenerator.h"
-#include "OdinPlaybackMedia.h"
+#include "OdinAudio/OdinSoundGenerator.h"
+#include "OdinAudio/OdinSynthComponent.h"
 #include "OdinSubsystem.h"
 
 
-void UAkOdinInputComponent::AssignOdinMedia(UOdinPlaybackMedia*& Media)
+void UAkOdinInputComponent::AssignOdinMedia(UOdinSynthComponent*& Media)
 {
 	if (nullptr == Media)
 		return;
 
-	this->SoundGenerator = MakeShared<OdinMediaSoundGenerator, ESPMode::ThreadSafe>();
+	this->SoundGenerator = MakeShared<FOdinSoundGenerator, ESPMode::ThreadSafe>();
 	this->PlaybackMedia = Media;
 	
-	SoundGenerator->SetStreamReader(Media->GetPlaybackStreamReader());
+	SoundGenerator->SetOdinDecoder(Media->GetDecoder());
 }
 
 void UAkOdinInputComponent::GetChannelConfig(AkAudioFormat& AudioFormat)
 {
-	int NumChannels = ODIN_DEFAULT_CHANNEL_COUNT;
-	int SampleRate = ODIN_DEFAULT_SAMPLE_RATE;
-
-	if (GetWorld() && GetWorld()->GetGameInstance())
-	{
-		if (const UOdinSubsystem* OdinInitSubsystem =
-			GetWorld()->GetGameInstance()->GetSubsystem<UOdinSubsystem>())
-		{
-			NumChannels = OdinInitSubsystem->GetChannelCount();
-			SampleRate = OdinInitSubsystem->GetSampleRate();
-		}
-	}
+	int NumChannels = 2;
+	int SampleRate = 48000;
 
 	AkChannelConfig ChannelConfig;
 	ChannelConfig.SetStandard(AK::ChannelMaskFromNumChannels(NumChannels));
@@ -72,10 +62,9 @@ bool UAkOdinInputComponent::FillSamplesBuffer(uint32 NumChannels, uint32 NumSamp
 
 
 	const uint32 Result = SoundGenerator->OnGenerateAudio(Buffer.GetData(), RequestedTotalSamples);
-	if (odin_is_error(Result))
+	if (Result != RequestedTotalSamples)
 	{
-		FString ErrorString = UOdinFunctionLibrary::FormatError(Result, true);
-		UE_LOG(LogTemp, Error, TEXT("UAkOdinInputComponent: Error during FillSamplesBuffer: %s"), *ErrorString);
+		UE_LOG(LogTemp, Warning, TEXT("UAkOdinInputComponent: missmatch during FillSamplesBuffer in dspreadcallback"));
 		return false;
 	}
 
