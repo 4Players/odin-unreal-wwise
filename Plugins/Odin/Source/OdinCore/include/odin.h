@@ -70,10 +70,6 @@ typedef enum OdinError {
      */
     ODIN_ERROR_ARGUMENT_INVALID_JSON = -17,
     /**
-     * A provided OdinCipher argument is invalid.
-     */
-    ODIN_ERROR_ARGUMENT_INVALID_CIPHER = -18,
-    /**
      * The provided version is invalid.
      */
     ODIN_ERROR_INVALID_VERSION = -21,
@@ -297,7 +293,7 @@ typedef struct OdinRoomEvents {
  * along with parameters to adjust for any additional capacity overhead.
  */
 typedef struct OdinCipher {
-    int32_t (*init)(struct OdinCipher *cipher, struct OdinRoom *room);
+    void (*init)(struct OdinCipher *cipher, struct OdinRoom *room);
     void (*free)(struct OdinCipher *cipher);
     void (*on_event)(struct OdinCipher *cipher, const unsigned char *bytes, uint32_t length);
     int32_t (*encrypt_datagram)(struct OdinCipher *cipher,
@@ -506,8 +502,6 @@ void odin_error_reset_last_error(void);
  * `out_room`. If provided, the room events struct enables delivery of room-specific callbacks
  * to notify your application about incoming datagrams or RPCs. Additionally, an optional ODIN
  * cipher plugin can be provided to enable end-to-end encryption of room communications.
- *
- * Note: The new room takes ownership of the ODIN cipher, if provided.
  */
 enum OdinError odin_room_create(const char *gateway,
                                 const char *authentication,
