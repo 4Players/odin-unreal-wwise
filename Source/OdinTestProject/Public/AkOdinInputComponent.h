@@ -7,7 +7,7 @@
 #include "AkOdinInputComponent.generated.h"
 
 class FOdinSoundGenerator;
-class UOdinSynthComponent;
+class UOdinDecoder;
 
 UCLASS(BlueprintType, Blueprintable, meta = (BlueprintSpawnableComponent))
 class UAkOdinInputComponent : public UAkAudioInputComponent
@@ -16,14 +16,13 @@ class UAkOdinInputComponent : public UAkAudioInputComponent
 
 public:
 	/**
-	 * Assigns a UOdinPlaybackMedia object to the component and initializes the associated sound generator.
+	 * Assigns a UOdinDecoder object to the component and initializes the associated sound generator.
 	 *
-	 * @param Media Reference to a pointer of a UOdinPlaybackMedia object, which will be assigned to the component.
+	 * @param Decoder Reference to a pointer of a UOdinDecoder object, which will be assigned to the component.
 	 *              Must not be null for successful assignment.
 	 */
 	UFUNCTION(BlueprintCallable, Category = "Odin|Sound")
-	void AssignOdinMedia(UPARAM(ref)
-		UOdinSynthComponent*& Media);
+	void AssignOdinDecoder(UOdinDecoder*& Decoder);
 
 	virtual void GetChannelConfig(AkAudioFormat& AudioFormat) override;
 	virtual bool FillSamplesBuffer(uint32 NumChannels, uint32 NumSamples, float** BufferToFill) override;
@@ -47,10 +46,10 @@ public:
 
 protected:
 	/**
-	 * A pointer to an Odin playback media object used to retrieve audio from Odin.
+	 * A pointer to an Odin playback decoder object used to retrieve audio from Odin.
 	 */
 	UPROPERTY(BlueprintReadOnly, Category = "Odin|Sound")
-	UOdinSynthComponent* PlaybackMedia = nullptr;
+	UOdinDecoder* PlaybackDecoder;
 	/**
 	 * A pointer to an Odin playback media object used to process or play back audio streams.
 	 */
