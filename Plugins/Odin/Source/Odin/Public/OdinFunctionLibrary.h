@@ -55,7 +55,7 @@ class ODIN_API UOdinFunctionLibrary : public UBlueprintFunctionLibrary
     static void UnlinkEncoderFromRoom(UOdinEncoder* Encoder);
 
     UFUNCTION(BlueprintCallable,
-              meta     = (DisplayName = "Register Decoder to Peer", ToolTip = "Register Decoder to Peer for a specific Odin Room.", Keywords = "Link"),
+              meta     = (DisplayName = "Register Decoder to Peer", ToolTip = "Register Decoder to Peer for a specific Odin Room.", Keywords = "Link,Assign"),
               Category = "Odin|Audio Pipeline")
     static void RegisterDecoder(UOdinDecoder* Decoder, UOdinRoom* Room, int64 PeerId);
 

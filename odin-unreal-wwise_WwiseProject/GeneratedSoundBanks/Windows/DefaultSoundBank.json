@@ -3,14 +3,14 @@
   "Platform": "Windows",
   "BasePlatform": "Windows",
   "SchemaVersion": "16",
-  "SoundBankVersion": "154",
+  "SoundBankVersion": "172",
   "SoundBanks": [
    {
     "Id": "1675065207",
     "Type": "User",
     "GUID": "{C54580C3-3580-4A53-8E21-D3DBBA7349B4}",
     "Language": "SFX",
-    "Hash": "{8E4FC6BD-3068-ED7B-C130-666EE622FCE4}",
+    "Hash": "{8175ABEE-C0EC-71C4-3E70-621E7A30B87E}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\DefaultSoundBank",
     "ShortName": "DefaultSoundBank",
     "Path": "DefaultSoundBank.bnk",
@@ -19,7 +19,7 @@
       {
        "Id": "756893708",
        "Name": "Audio Input",
-       "ObjectPath": "\\Actor-Mixer Hierarchy\\Default Work Unit\\VoiceChat\\Audio Input",
+       "ObjectPath": "\\Containers\\Default Work Unit\\VoiceChat\\Audio Input",
        "GUID": "{9CDE42BC-7F26-4C31-80B6-DCD2202CCA9C}",
        "LibName": "Wwise Audio Input",
        "LibId": "13107202"
@@ -53,6 +53,6 @@
     ]
    }
   ],
-  "FileHash": "{2A9F3A41-859B-FDEB-6FA2-FB2E49CF5BA8}"
+  "FileHash": "{F8985C18-BB14-B4DB-7817-1B43A2E7257F}"
  }
 }

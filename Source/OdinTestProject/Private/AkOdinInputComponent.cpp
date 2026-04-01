@@ -7,7 +7,7 @@
 #include "OdinSubsystem.h"
 
 
-void UAkOdinInputComponent::AssignOdinDecoder(UOdinDecoder*& Decoder)
+void UAkOdinInputComponent::AssignOdinDecoder(UOdinDecoder* Decoder)
 {
 	if (nullptr == Decoder)
 		return;
@@ -20,8 +20,7 @@ void UAkOdinInputComponent::AssignOdinDecoder(UOdinDecoder*& Decoder)
 
 void UAkOdinInputComponent::GetChannelConfig(AkAudioFormat& AudioFormat)
 {
-	int NumChannels = 2;
-	int SampleRate = 48000;
+	const int32 NumChannels = bIsStereo ? 2 : 1;
 
 	AkChannelConfig ChannelConfig;
 	ChannelConfig.SetStandard(AK::ChannelMaskFromNumChannels(NumChannels));
@@ -42,7 +41,7 @@ void UAkOdinInputComponent::GetChannelConfig(AkAudioFormat& AudioFormat)
 
 bool UAkOdinInputComponent::FillSamplesBuffer(uint32 NumChannels, uint32 NumSamples, float** BufferToFill)
 {
-	if (!SoundGenerator || !PlaybackMedia)
+	if (!SoundGenerator || !PlaybackDecoder)
 		return false;
 
 	const int32 RequestedTotalSamples = NumChannels * NumSamples;

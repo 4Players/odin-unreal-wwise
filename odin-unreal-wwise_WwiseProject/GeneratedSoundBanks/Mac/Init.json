@@ -3,14 +3,14 @@
   "Platform": "Mac",
   "BasePlatform": "Mac",
   "SchemaVersion": "16",
-  "SoundBankVersion": "154",
+  "SoundBankVersion": "172",
   "SoundBanks": [
    {
     "Id": "1355168291",
     "Type": "User",
     "GUID": "{701ECBBD-9C7B-4030-8CDB-749EE5D1C7B9}",
     "Language": "SFX",
-    "Hash": "{974ABA1B-D445-0CB4-703A-86CADFF8F4ED}",
+    "Hash": "{B7D30D5B-A6D6-C90A-2060-39169AC27327}",
     "ObjectPath": "Init",
     "ShortName": "Init",
     "Path": "Init.bnk",
@@ -19,7 +19,7 @@
       {
        "Id": "2317455096",
        "Name": "No_Output",
-       "ObjectPath": "\\Audio Devices\\Default Work Unit\\No_Output",
+       "ObjectPath": "\\Devices\\Default Work Unit\\No_Output",
        "GUID": "{775D540F-1FFB-4F0B-BEF5-A88640E5C402}",
        "LibName": "No Output",
        "LibId": "11862023"
@@ -27,7 +27,7 @@
       {
        "Id": "3859886410",
        "Name": "System",
-       "ObjectPath": "\\Audio Devices\\Default Work Unit\\System",
+       "ObjectPath": "\\Devices\\Default Work Unit\\System",
        "GUID": "{38D8B1DF-3DBD-47B4-B670-34140AEBA855}",
        "LibName": "System",
        "LibId": "11403271"
@@ -38,7 +38,7 @@
      {
       "Id": "3803692087",
       "Name": "Master Audio Bus",
-      "ObjectPath": "\\Master-Mixer Hierarchy\\Default Work Unit\\Master Audio Bus",
+      "ObjectPath": "\\Busses\\Default Work Unit\\Master Audio Bus",
       "GUID": "{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}"
      }
     ],
@@ -52,6 +52,6 @@
     ]
    }
   ],
-  "FileHash": "{562A21CC-5233-9B55-F1EA-A6175686D249}"
+  "FileHash": "{56CD9C79-96B2-E41B-9291-E2247E4E397C}"
  }
 }

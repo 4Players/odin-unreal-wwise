@@ -22,7 +22,7 @@ public:
 	 *              Must not be null for successful assignment.
 	 */
 	UFUNCTION(BlueprintCallable, Category = "Odin|Sound")
-	void AssignOdinDecoder(UOdinDecoder*& Decoder);
+	void AssignOdinDecoder(UOdinDecoder* Decoder);
 
 	virtual void GetChannelConfig(AkAudioFormat& AudioFormat) override;
 	virtual bool FillSamplesBuffer(uint32 NumChannels, uint32 NumSamples, float** BufferToFill) override;
@@ -60,6 +60,11 @@ protected:
 	 */
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category="Odin|Sound")
 	UAkRtpc* VoiceActivityRtpc;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Odin|Sound")
+	int32 SampleRate = 48000;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Odin|Sound")
+	bool bIsStereo = false;
 
 
 	TSharedPtr<FOdinSoundGenerator, ESPMode::ThreadSafe> SoundGenerator;
