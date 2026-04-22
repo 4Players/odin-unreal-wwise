@@ -7,6 +7,7 @@
 					<PropertyList>
 						<Property Name="3DSpatialization" Type="int16" Value="2"/>
 						<Property Name="BelowThresholdBehavior" Type="int16" Value="2"/>
+						<Property Name="VirtualVoiceQueueBehavior" Type="int16" Value="0"/>
 					</PropertyList>
 					<ReferenceList>
 						<Reference Name="Attenuation">
@@ -49,7 +50,10 @@
 										</LowPassFilterUsage>
 										<HighPassFilterUsage>
 											<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
-										</HighPassFilterUsage><DualShelfUsage><CurveUsageInfo Platform="Linked" CurveToUse="None"/></DualShelfUsage>
+										</HighPassFilterUsage>
+										<DualShelfUsage>
+											<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
+										</DualShelfUsage>
 										<SpreadUsage>
 											<CurveUsageInfo Platform="Linked" CurveToUse="None"/>
 										</SpreadUsage>
@@ -64,7 +68,10 @@
 										</ObstructionLPFUsage>
 										<ObstructionHPFUsage>
 											<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-										</ObstructionHPFUsage><ObstructionDSFUsage><CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/></ObstructionDSFUsage>
+										</ObstructionHPFUsage>
+										<ObstructionDSFUsage>
+											<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
+										</ObstructionDSFUsage>
 										<OcclusionVolumeUsage>
 											<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
 										</OcclusionVolumeUsage>
@@ -73,7 +80,10 @@
 										</OcclusionLPFUsage>
 										<OcclusionHPFUsage>
 											<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-										</OcclusionHPFUsage><OcclusionDSFUsage><CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/></OcclusionDSFUsage>
+										</OcclusionHPFUsage>
+										<OcclusionDSFUsage>
+											<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
+										</OcclusionDSFUsage>
 										<DiffractionVolumeUsage>
 											<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
 										</DiffractionVolumeUsage>
@@ -82,7 +92,10 @@
 										</DiffractionLPFUsage>
 										<DiffractionHPFUsage>
 											<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-										</DiffractionHPFUsage><DiffractionDSFUsage><CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/></DiffractionDSFUsage>
+										</DiffractionHPFUsage>
+										<DiffractionDSFUsage>
+											<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
+										</DiffractionDSFUsage>
 										<TransmissionVolumeUsage>
 											<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
 										</TransmissionVolumeUsage>
@@ -91,7 +104,10 @@
 										</TransmissionLPFUsage>
 										<TransmissionHPFUsage>
 											<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
-										</TransmissionHPFUsage><TransmissionDSFUsage><CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/></TransmissionDSFUsage>
+										</TransmissionHPFUsage>
+										<TransmissionDSFUsage>
+											<CurveUsageInfo Platform="Linked" CurveToUse="UseProject"/>
+										</TransmissionDSFUsage>
 									</CurveUsageInfoList>
 								</Attenuation>
 							</Custom>
@@ -110,38 +126,38 @@
 					</ChildrenList>
 					<ObjectLists>
 						<ObjectList Name="RTPC">
-							
-						<RTPC Name="" ID="{8516B297-3BFC-4200-9CEB-BBD70B8A1859}" ShortID="517117533">
-										<PropertyList>
-											<Property Name="PropertyName" Type="string" Value="Volume"/>
-										</PropertyList>
-										<ReferenceList>
-											<Reference Name="ControlInput">
-												<ObjectRef Name="OdinVoiceActivity" ID="{C682F33F-60C3-46B4-868C-ADF1169C56E5}" WorkUnitID="{738436DC-86FB-4045-9DF1-911ECAF164C8}"/>
-											</Reference>
-											<Reference Name="Curve">
-												<Custom>
-													<Curve Name="" ID="{23AE00FD-DC70-4DCE-ABCC-8785CD195BAF}">
-														<PropertyList>
-															<Property Name="Flags" Type="int32" Value="3"/>
-														</PropertyList>
-														<PointList>
-															<Point>
-																<XPos>0</XPos>
-																<YPos>-200</YPos>
-																<Flags>5</Flags>
-															</Point>
-															<Point>
-																<XPos>1</XPos>
-																<YPos>0</YPos>
-																<Flags>37</Flags>
-															</Point>
-														</PointList>
-													</Curve>
-												</Custom>
-											</Reference>
-										</ReferenceList>
-									</RTPC></ObjectList>
+							<RTPC Name="" ID="{8516B297-3BFC-4200-9CEB-BBD70B8A1859}" ShortID="517117533">
+								<PropertyList>
+									<Property Name="PropertyName" Type="string" Value="Volume"/>
+								</PropertyList>
+								<ReferenceList>
+									<Reference Name="ControlInput">
+										<ObjectRef Name="OdinVoiceActivity" ID="{C682F33F-60C3-46B4-868C-ADF1169C56E5}" WorkUnitID="{738436DC-86FB-4045-9DF1-911ECAF164C8}"/>
+									</Reference>
+									<Reference Name="Curve">
+										<Custom>
+											<Curve Name="" ID="{23AE00FD-DC70-4DCE-ABCC-8785CD195BAF}">
+												<PropertyList>
+													<Property Name="Flags" Type="int32" Value="3"/>
+												</PropertyList>
+												<PointList>
+													<Point>
+														<XPos>0</XPos>
+														<YPos>-200</YPos>
+														<Flags>5</Flags>
+													</Point>
+													<Point>
+														<XPos>1</XPos>
+														<YPos>0</YPos>
+														<Flags>37</Flags>
+													</Point>
+												</PointList>
+											</Curve>
+										</Custom>
+									</Reference>
+								</ReferenceList>
+							</RTPC>
+						</ObjectList>
 					</ObjectLists>
 					<ActiveSourceList>
 						<ActiveSource Name="Audio Input" ID="{9CDE42BC-7F26-4C31-80B6-DCD2202CCA9C}" Platform="Linked"/>

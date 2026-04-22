@@ -1,8 +1,6 @@
 /* Copyright (c) 2022-2024 4Players GmbH. All rights reserved. */
 
 #include "AkOdinInputComponent.h"
-
-#include "OdinFunctionLibrary.h"
 #include "OdinAudio/OdinSoundGenerator.h"
 #include "OdinSubsystem.h"
 
@@ -12,10 +10,21 @@ void UAkOdinInputComponent::AssignOdinDecoder(UOdinDecoder* Decoder)
 	if (nullptr == Decoder)
 		return;
 
-	this->SoundGenerator = MakeShared<FOdinSoundGenerator, ESPMode::ThreadSafe>();
-	this->PlaybackDecoder = Decoder;
+	SoundGenerator.Reset();
+	this->SoundGenerator = MakeUnique<FOdinSoundGenerator>();
 	
+	this->PlaybackDecoder = Decoder;
 	SoundGenerator->SetOdinDecoder(Decoder);
+}
+
+void UAkOdinInputComponent::UnassignOdinDecoder()
+{
+	if (SoundGenerator.IsValid())
+	{
+		SoundGenerator->Close();
+	}
+	SoundGenerator.Reset();
+	PlaybackDecoder = nullptr;
 }
 
 void UAkOdinInputComponent::GetChannelConfig(AkAudioFormat& AudioFormat)
@@ -41,14 +50,16 @@ void UAkOdinInputComponent::GetChannelConfig(AkAudioFormat& AudioFormat)
 
 bool UAkOdinInputComponent::FillSamplesBuffer(uint32 NumChannels, uint32 NumSamples, float** BufferToFill)
 {
-	if (!SoundGenerator || !PlaybackDecoder)
+	if (!SoundGenerator.IsValid() || !PlaybackDecoder)
+	{
 		return false;
+	}
 
 	const int32 RequestedTotalSamples = NumChannels * NumSamples;
 
 	if (GetIsMuted())
 	{
-		Buffer.SetNumZeroed(RequestedTotalSamples, EAllowShrinking::No);
+		return false;
 	}
 	else
 	{
@@ -62,7 +73,7 @@ bool UAkOdinInputComponent::FillSamplesBuffer(uint32 NumChannels, uint32 NumSamp
 	const uint32 Result = SoundGenerator->OnGenerateAudio(Buffer.GetData(), RequestedTotalSamples);
 	if (Result != RequestedTotalSamples)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("UAkOdinInputComponent: missmatch during FillSamplesBuffer in dspreadcallback"));
+		UE_LOG(LogTemp, Warning, TEXT("UAkOdinInputComponent: mismatch during FillSamplesBuffer in DspReadCallback"));
 		return false;
 	}
 

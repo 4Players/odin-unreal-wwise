@@ -3,10 +3,10 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "OdinAudio/OdinSoundGenerator.h"
 #include "AkAudioInputComponent.h"
 #include "AkOdinInputComponent.generated.h"
 
-class FOdinSoundGenerator;
 class UOdinDecoder;
 
 UCLASS(BlueprintType, Blueprintable, meta = (BlueprintSpawnableComponent))
@@ -21,8 +21,11 @@ public:
 	 * @param Decoder Reference to a pointer of a UOdinDecoder object, which will be assigned to the component.
 	 *              Must not be null for successful assignment.
 	 */
-	UFUNCTION(BlueprintCallable, Category = "Odin|Sound")
+	UFUNCTION(BlueprintCallable, Category = "Odin|Sound", meta=(Keywords="Connect,Decoder"))
 	void AssignOdinDecoder(UOdinDecoder* Decoder);
+
+	UFUNCTION(BlueprintCallable, Category = "Odin|Sound", meta=(Keywords="Disconnect,Clear"))
+	void UnassignOdinDecoder();
 
 	virtual void GetChannelConfig(AkAudioFormat& AudioFormat) override;
 	virtual bool FillSamplesBuffer(uint32 NumChannels, uint32 NumSamples, float** BufferToFill) override;
@@ -32,6 +35,7 @@ public:
 	 *
 	 * @return True if the audio is currently muted; otherwise, false.
 	 */
+	UFUNCTION(BlueprintPure, Category="Odin|Sound")
 	virtual bool GetIsMuted() const;
 	/**
 	 * Sets the muted state for Odin audio input.
@@ -42,6 +46,7 @@ public:
 	 *
 	 * @param bNewIsMuted Specifies whether to mute (true) or unmute (false) the audio.
 	 */
+	UFUNCTION(BlueprintCallable, Category="Odin|Sound")
 	virtual void SetIsMuted(bool bNewIsMuted);
 
 protected:
@@ -65,8 +70,8 @@ protected:
 	int32 SampleRate = 48000;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Odin|Sound")
 	bool bIsStereo = false;
+	
 
-
-	TSharedPtr<FOdinSoundGenerator, ESPMode::ThreadSafe> SoundGenerator;
+	TUniquePtr<FOdinSoundGenerator> SoundGenerator;
 	FThreadSafeBool bIsMuted = false;
 };
