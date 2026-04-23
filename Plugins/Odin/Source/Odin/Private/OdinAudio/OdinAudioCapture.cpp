@@ -156,8 +156,7 @@ template <typename DeviceCheck> bool UOdinAudioCapture::ChangeCaptureDevice(cons
     TArray<FOdinCaptureDeviceInfo> AllDevices;
     GetCaptureDevicesAvailable(AllDevices);
 
-    FOdinCaptureDeviceInfo PreviousDevice;
-    bool                   bSuccess = false;
+    bool bSuccess = false;
     // look for the name of the selected device.
     for (int32 i = 0; i < AllDevices.Num(); ++i) {
         const FOdinCaptureDeviceInfo OdinCaptureDeviceInfo = AllDevices[i];
@@ -167,7 +166,6 @@ template <typename DeviceCheck> bool UOdinAudioCapture::ChangeCaptureDevice(cons
                 return true;
             } else {
                 CurrentSelectedDeviceIndex = i;
-                PreviousDevice             = CurrentSelectedDevice;
                 CurrentSelectedDevice      = OdinCaptureDeviceInfo;
                 bSuccess                   = true;
             }
@@ -181,13 +179,11 @@ template <typename DeviceCheck> bool UOdinAudioCapture::ChangeCaptureDevice(cons
 
         if (IsInGameThread()) {
             RestartCapturing();
-            OnCaptureDeviceChanged.Broadcast(PreviousDevice, CurrentSelectedDevice);
         } else {
             TWeakObjectPtr<UOdinAudioCapture> WeakThisPtr = this;
-            AsyncTask(ENamedThreads::GameThread, [WeakThisPtr, PreviousDevice]() {
+            AsyncTask(ENamedThreads::GameThread, [WeakThisPtr]() {
                 if (WeakThisPtr.IsValid()) {
                     WeakThisPtr->RestartCapturing();
-                    WeakThisPtr->OnCaptureDeviceChanged.Broadcast(PreviousDevice, WeakThisPtr->CurrentSelectedDevice);
                 }
             });
         }

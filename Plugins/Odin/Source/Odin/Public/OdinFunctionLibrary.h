@@ -47,15 +47,11 @@ class ODIN_API UOdinFunctionLibrary : public UBlueprintFunctionLibrary
     static UOdinEncoder* CreateOdinEncoderFromGenerator(UObject* WorldContextObject, UPARAM(ref) UOdinRoom*& OdinRoom,
                                                         UPARAM(ref) UAudioGenerator*& AudioGenerator);
 
-    UFUNCTION(BlueprintCallable, Category = "Odin|Encoder", meta = (ToolTip = "Links an encoder to a room. Audio from the encoder will be sent to the room."))
     static void LinkEncoderToRoom(UOdinEncoder* Encoder, UOdinRoom* Room);
-
-    UFUNCTION(BlueprintCallable, Category = "Odin|Encoder",
-              meta = (ToolTip = "Unlinks an encoder from a room. Audio from the encoder will no longer be sent to the room."))
     static void UnlinkEncoderFromRoom(UOdinEncoder* Encoder);
 
     UFUNCTION(BlueprintCallable,
-              meta     = (DisplayName = "Register Decoder to Peer", ToolTip = "Register Decoder to Peer for a specific Odin Room.", Keywords = "Link,Assign"),
+              meta     = (DisplayName = "Register Decoder to Peer", ToolTip = "Register Decoder to Peer for a specific Odin Room.", Keywords = "Link"),
               Category = "Odin|Audio Pipeline")
     static void RegisterDecoder(UOdinDecoder* Decoder, UOdinRoom* Room, int64 PeerId);
 
