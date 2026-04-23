@@ -3,7 +3,7 @@
   "Project": {
    "Name": "odin-unreal-wwise_WwiseProject",
    "GUID": "{86A8E838-7FD5-4A60-8F4B-4E2AF819049C}",
-   "Generator": "2025.1.6.9117"
+   "Generator": "2025.1.7.9143"
   },
   "CacheRoot": "../.cache",
   "Platforms": [
@@ -31,6 +31,6 @@
     "UseAsStandIn": "true"
    }
   ],
-  "FileHash": "{FF2A95ED-8D75-887D-2E81-5029766ECCC5}"
+  "FileHash": "{3F01A13F-4CFD-B366-6AC9-65B0A3DAED60}"
  }
 }
