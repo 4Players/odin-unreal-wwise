@@ -49,6 +49,8 @@ public:
 	UFUNCTION(BlueprintCallable, Category="Odin|Sound")
 	virtual void SetIsMuted(bool bNewIsMuted);
 
+	virtual void TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+
 protected:
 	/**
 	 * A pointer to an Odin playback decoder object used to retrieve audio from Odin.
@@ -75,3 +77,5 @@ protected:
 	TUniquePtr<FOdinSoundGenerator> SoundGenerator;
 	FThreadSafeBool bIsMuted = false;
 };
+
+

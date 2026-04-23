@@ -4,7 +4,6 @@
 #include "OdinAudio/OdinSoundGenerator.h"
 #include "OdinSubsystem.h"
 
-
 void UAkOdinInputComponent::AssignOdinDecoder(UOdinDecoder* Decoder)
 {
 	if (nullptr == Decoder)
@@ -27,6 +26,19 @@ void UAkOdinInputComponent::UnassignOdinDecoder()
 	PlaybackDecoder = nullptr;
 }
 
+void UAkOdinInputComponent::TickComponent(float DeltaTime, enum ELevelTick TickType,
+	FActorComponentTickFunction* ThisTickFunction)
+{
+	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
+	if (GetIsMuted() && SoundGenerator.IsValid())
+	{
+		// We need to manually pop audio from the decoder, otherwise we won't receive audio events for the decoder,
+		// which would prevent us from unmuting the component
+		const int32 RequestedNumSamples = Buffer.Num() > 0 ? Buffer.Num() : 512;
+		SoundGenerator->OnGenerateAudio(Buffer.GetData(), RequestedNumSamples);
+	}
+}
+
 void UAkOdinInputComponent::GetChannelConfig(AkAudioFormat& AudioFormat)
 {
 	const int32 NumChannels = bIsStereo ? 2 : 1;
@@ -34,7 +46,7 @@ void UAkOdinInputComponent::GetChannelConfig(AkAudioFormat& AudioFormat)
 	AkChannelConfig ChannelConfig;
 	ChannelConfig.SetStandard(AK::ChannelMaskFromNumChannels(NumChannels));
 
-	UE_LOG(LogTemp, Warning, TEXT("Initializing Ak Odin Input Component with %i channels and Sample Rate of %i"),
+	UE_LOG(LogTemp, Log, TEXT("Initializing Ak Odin Input Component with %i channels and Sample Rate of %i"),
 	       NumChannels, SampleRate);
 
 	// set audio format
@@ -42,7 +54,7 @@ void UAkOdinInputComponent::GetChannelConfig(AkAudioFormat& AudioFormat)
 		SampleRate, // Sample rate
 		ChannelConfig, // \ref AkChannelConfig
 		8 * sizeof(float), // Bits per samples
-		sizeof(float), // Block Align = 4 Bytes? Shouldn't it be 2*4=8 Bytes, because of two channels?
+		sizeof(float), // Block Align = 4 Bytes
 		AK_FLOAT, // feeding floats
 		AK_NONINTERLEAVED
 	);
@@ -59,7 +71,7 @@ bool UAkOdinInputComponent::FillSamplesBuffer(uint32 NumChannels, uint32 NumSamp
 
 	if (GetIsMuted())
 	{
-		return false;
+		Buffer.SetNumZeroed(RequestedTotalSamples, EAllowShrinking::No);
 	}
 	else
 	{
@@ -101,5 +113,6 @@ void UAkOdinInputComponent::SetIsMuted(bool bNewIsMuted)
 		const int32 VoiceActivitySetting = bIsMuted ? 0 : 1;
 		SetRTPCValue(VoiceActivityRtpc, VoiceActivitySetting, 0,
 		             VoiceActivityRtpc->GetWwiseName().ToString());
+		UE_LOG(LogTemp, Verbose, TEXT("UAkOdinInputComponent: Set Voice Activity RTPC Value to %d"), VoiceActivitySetting);
 	}
 }
