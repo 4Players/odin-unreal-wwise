@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<WwiseDocument Type="Project" SchemaVersion="133" WwiseVersion="v2025.1.6" WwiseBuild="9117">
+<WwiseDocument Type="Project" SchemaVersion="133" WwiseVersion="v2025.1.7" WwiseBuild="9143">
 	<ProjectInfo>
 		<Project Name="odin-unreal-wwise_WwiseProject" ID="{86A8E838-7FD5-4A60-8F4B-4E2AF819049C}">
 			<Platforms>
@@ -13,6 +13,7 @@
 				<Language Name="SFX" ID="{F49A8EDE-CCBC-4E0A-8F0C-3496CA350A06}"/>
 			</LanguageList>
 			<PropertyList>
+				<Property Name="AutoSoundBankEnabled" Type="bool" Value="True"/>
 				<Property Name="ExternalSourcesInputPath" Type="string">
 					<ValueList>
 						<Value Platform="Windows"></Value>
@@ -21,11 +22,11 @@
 				</Property>
 				<Property Name="ExternalSourcesOutputPath" Type="string">
 					<ValueList>
-						<Value Platform="Windows">GeneratedSoundBanks\Windows\</Value>
-						<Value Platform="Mac">GeneratedSoundBanks\Mac\</Value>
+						<Value Platform="Windows">GeneratedSoundBanks\Windows</Value>
+						<Value Platform="Mac">GeneratedSoundBanks\Mac</Value>
 					</ValueList>
 				</Property>
-				<Property Name="SoundBankHeaderFilePath" Type="string" Value="GeneratedSoundBanks\"/>
+				<Property Name="SoundBankHeaderFilePath" Type="string" Value="GeneratedSoundBanks"/>
 				<Property Name="SoundBankPaths" Type="string">
 					<ValueList>
 						<Value Platform="Windows">GeneratedSoundBanks\Windows\</Value>
@@ -58,6 +59,10 @@
 				</Property>
 				<Property Name="WwiseVersionWhenCreated" Type="string" Value="Branch=wwise_v2024.1.6|Build=8842|VersionName=v2024.1.6|Config=Release"/>
 			</PropertyList>
+			<MiscSettings>
+				<MiscSettingEntry Name="Cache"><![CDATA[.cache]]></MiscSettingEntry>
+				<MiscSettingEntry Name="Originals"><![CDATA[Originals]]></MiscSettingEntry>
+			</MiscSettings>
 			<SharedValues>
 				<SharedPropertyList ClassName="AudioFileSource" PluginType="0" CompanyID="1" PluginID="0">
 					<PropertyList>
@@ -11025,6 +11030,11 @@
 								<Value>7</Value>
 							</ValueList>
 						</Property>
+						<Property Name="DelayErrorTolerance" Type="Real32">
+							<ValueList>
+								<Value>25</Value>
+							</ValueList>
+						</Property>
 						<Property Name="DiffractionWarping" Type="Real32">
 							<ValueList>
 								<Value>0</Value>
@@ -11055,6 +11065,11 @@
 								<Value>20</Value>
 							</ValueList>
 						</Property>
+						<Property Name="HardwareProcessing" Type="bool">
+							<ValueList>
+								<Value>False</Value>
+							</ValueList>
+						</Property>
 						<Property Name="Inclusion" Type="bool">
 							<ValueList>
 								<Value>True</Value>
@@ -11066,6 +11081,11 @@
 							</ValueList>
 						</Property>
 						<Property Name="MaxDistance" Type="Real32">
+							<ValueList>
+								<Value>1000</Value>
+							</ValueList>
+						</Property>
+						<Property Name="MaxImageSourceDelayTime" Type="Real32">
 							<ValueList>
 								<Value>1000</Value>
 							</ValueList>

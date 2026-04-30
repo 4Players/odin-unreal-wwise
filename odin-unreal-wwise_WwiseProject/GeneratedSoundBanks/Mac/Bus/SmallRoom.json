@@ -1,0 +1,48 @@
+{
+ "SoundBanksInfo": {
+  "Platform": "Mac",
+  "BasePlatform": "Mac",
+  "SchemaVersion": "16",
+  "SoundBankVersion": "172",
+  "SoundBanks": [
+   {
+    "Id": "2933838247",
+    "Type": "Bus",
+    "GUID": "{A56F8CA6-3944-48F3-9946-73DBA6C5C482}",
+    "Language": "SFX",
+    "Hash": "{3483D104-B8C3-135A-B712-EDA00B1FA28C}",
+    "ObjectPath": "SmallRoom",
+    "ShortName": "SmallRoom",
+    "Path": "Bus/SmallRoom.bnk",
+    "Plugins": {
+     "ShareSets": [
+      {
+       "Id": "2513915904",
+       "Name": "Hall_Large",
+       "ObjectPath": "\\Effects\\Factory Effects\\RoomVerb\\Halls\\Hall_Large",
+       "GUID": "{6D154498-FF6D-4823-96FC-56841B70E079}",
+       "LibName": "Wwise RoomVerb",
+       "LibId": "7733251"
+      }
+     ]
+    },
+    "AuxBusses": [
+     {
+      "Id": "2933838247",
+      "Name": "SmallRoom",
+      "ObjectPath": "\\Busses\\Default Work Unit\\Master Audio Bus\\SmallRoom",
+      "GUID": "{A56F8CA6-3944-48F3-9946-73DBA6C5C482}",
+      "PluginRefs": {
+       "ShareSets": [
+        {
+         "Id": "2513915904"
+        }
+       ]
+      }
+     }
+    ]
+   }
+  ],
+  "FileHash": "{C4432DA2-ECE1-CE63-AB4A-A4F436B55D33}"
+ }
+}

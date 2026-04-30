@@ -9,6 +9,21 @@
 							<ObjectRef Name="System" ID="{38D8B1DF-3DBD-47B4-B670-34140AEBA855}" WorkUnitID="{EEA71840-3FBC-48DF-8157-38746014BB3A}"/>
 						</Reference>
 					</ReferenceList>
+					<ChildrenList>
+						<AuxBus Name="SmallRoom" ID="{A56F8CA6-3944-48F3-9946-73DBA6C5C482}">
+							<ObjectLists>
+								<ObjectList Name="Effects">
+									<EffectSlot Name="" ID="{5B45ED3D-5B50-44F8-B229-10F91E3933B4}" ShortID="874692936">
+										<ReferenceList>
+											<Reference Name="Effect" PluginName="Wwise RoomVerb" CompanyID="0" PluginID="118" PluginType="3">
+												<ObjectRef Name="Hall_Large" ID="{6D154498-FF6D-4823-96FC-56841B70E079}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
+											</Reference>
+										</ReferenceList>
+									</EffectSlot>
+								</ObjectList>
+							</ObjectLists>
+						</AuxBus>
+					</ChildrenList>
 				</Bus>
 			</ChildrenList>
 		</WorkUnit>

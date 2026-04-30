@@ -10,7 +10,7 @@
     "Type": "User",
     "GUID": "{C54580C3-3580-4A53-8E21-D3DBBA7349B4}",
     "Language": "SFX",
-    "Hash": "{0155FD86-B141-0F50-3A29-F44EE75F35D1}",
+    "Hash": "{9CB295D2-7D97-BA47-AAB5-6F6BDE862C40}",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\DefaultSoundBank",
     "ShortName": "DefaultSoundBank",
     "Path": "DefaultSoundBank.bnk",
@@ -32,7 +32,7 @@
       "Name": "Play_VoiceChat",
       "ObjectPath": "\\Events\\Default Work Unit\\Play_VoiceChat",
       "GUID": "{A871243F-552A-4083-B348-1039C14FDC2D}",
-      "MaxAttenuation": "1000",
+      "MaxAttenuation": "500",
       "DurationType": "Unknown",
       "PluginRefs": {
        "Custom": [
@@ -53,6 +53,6 @@
     ]
    }
   ],
-  "FileHash": "{4C723F0A-D29A-365A-DDBB-B6B414EB79FE}"
+  "FileHash": "{9889F045-42E0-2E38-27DB-5E5A0D8BE586}"
  }
 }

@@ -4,6 +4,13 @@
   "BasePlatform": "Mac",
   "PluginLibs": [
    {
+    "LibName": "Wwise RoomVerb",
+    "LibId": "7733251",
+    "Type": "Effect",
+    "DLL": "AkRoomVerb",
+    "StaticLib": "AkRoomVerbFX"
+   },
+   {
     "LibName": "System",
     "LibId": "11403271",
     "Type": "AudioDevice"
@@ -21,6 +28,6 @@
     "StaticLib": "AkAudioInputSource"
    }
   ],
-  "FileHash": "{C67BDE8B-E357-F327-CC1E-377D660298C5}"
+  "FileHash": "{A1EC81D6-CFCE-3676-F07E-DB39FD48630F}"
  }
 }

@@ -1,0 +1,6 @@
+Auxiliary Bus	ID	Name			Wwise Object Path	Notes
+	2933838247	SmallRoom			\Default Work Unit\Master Audio Bus\SmallRoom	
+
+Effect plug-ins	ID	Name	Type				Notes
+	2513915904	Hall_Large	Wwise RoomVerb			
+

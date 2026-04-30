@@ -10,11 +10,21 @@
     "Type": "User",
     "GUID": "{701ECBBD-9C7B-4030-8CDB-749EE5D1C7B9}",
     "Language": "SFX",
-    "Hash": "{8AE574E8-1172-E85B-437D-BFA7E5AC6EA0}",
+    "Hash": "{C32C4361-D8AA-2333-9A96-A01A8071102B}",
     "ObjectPath": "Init",
     "ShortName": "Init",
     "Path": "Init.bnk",
     "Plugins": {
+     "ShareSets": [
+      {
+       "Id": "2513915904",
+       "Name": "Hall_Large",
+       "ObjectPath": "\\Effects\\Factory Effects\\RoomVerb\\Halls\\Hall_Large",
+       "GUID": "{6D154498-FF6D-4823-96FC-56841B70E079}",
+       "LibName": "Wwise RoomVerb",
+       "LibId": "7733251"
+      }
+     ],
      "AudioDevices": [
       {
        "Id": "2317455096",
@@ -42,6 +52,21 @@
       "GUID": "{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}"
      }
     ],
+    "AuxBusses": [
+     {
+      "Id": "2933838247",
+      "Name": "SmallRoom",
+      "ObjectPath": "\\Busses\\Default Work Unit\\Master Audio Bus\\SmallRoom",
+      "GUID": "{A56F8CA6-3944-48F3-9946-73DBA6C5C482}",
+      "PluginRefs": {
+       "ShareSets": [
+        {
+         "Id": "2513915904"
+        }
+       ]
+      }
+     }
+    ],
     "GameParameters": [
      {
       "Id": "2322230370",
@@ -52,6 +77,6 @@
     ]
    }
   ],
-  "FileHash": "{C584011D-F754-3085-067F-F4824E3A78DE}"
+  "FileHash": "{9574943D-A614-3D2D-EADB-EC9568E53093}"
  }
 }

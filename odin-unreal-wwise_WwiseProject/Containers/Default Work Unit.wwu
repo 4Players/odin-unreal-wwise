@@ -6,20 +6,19 @@
 				<Sound Name="VoiceChat" ID="{56895183-638F-477D-AA5B-9A7FA1016212}" ShortID="771051652">
 					<PropertyList>
 						<Property Name="3DSpatialization" Type="int16" Value="2"/>
+						<Property Name="AttenuationDistanceScaling" Type="Real32" Value="5"/>
 						<Property Name="BelowThresholdBehavior" Type="int16" Value="2"/>
+						<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
 						<Property Name="VirtualVoiceQueueBehavior" Type="int16" Value="0"/>
 					</PropertyList>
 					<ReferenceList>
 						<Reference Name="Attenuation">
 							<Custom>
-								<Attenuation Name="Attenuation (Custom)" ID="{87B36721-8EFC-474C-9AC6-F0CA2658D806}" ShortID="985375663">
-									<PropertyList>
-										<Property Name="RadiusMax" Type="Real64" Value="1000"/>
-									</PropertyList>
+								<Attenuation Name="Attenuation (Custom)" ID="{989385E8-CF12-43B7-9CDE-6D760A835597}" ShortID="830716667">
 									<CurveUsageInfoList>
 										<VolumeDryUsage>
 											<CurveUsageInfo Platform="Linked" CurveToUse="Custom">
-												<Curve Name="VolumeDry" ID="{AD5E7210-7D12-49DE-9B41-247E41E8BBA2}">
+												<Curve Name="VolumeDry" ID="{E21ED39F-214A-46D8-A613-BECC787CCEB1}">
 													<PropertyList>
 														<Property Name="Flags" Type="int32" Value="3"/>
 													</PropertyList>
@@ -28,10 +27,9 @@
 															<XPos>0</XPos>
 															<YPos>0</YPos>
 															<Flags>5</Flags>
-															<SegmentShape>Log3</SegmentShape>
 														</Point>
 														<Point>
-															<XPos>1000</XPos>
+															<XPos>100</XPos>
 															<YPos>-200</YPos>
 															<Flags>37</Flags>
 														</Point>
