@@ -44,3 +44,8 @@ It can be added to actors in your world, for example on Player Character's to en
 > [!TIP]
 > Our [Wwise + ODIN Voice Chat guide](https://docs.4players.io/voice/unreal/next/guides/odin-wwise/) goes into more details on how to use the Ak Input Component and how to enable Wwise Voice Virtualization, so make sure to check it out.
 
+
+### Remarks
+
+In the project, the ODIN Voice Room ID is hardcoded (to tutorial), meaning all clients sharing the same Access Key connect to the same ODIN room. This works for small-scale testing with a few users on the same game server, but is unsuitable for production.
+In production, generate a unique room name for each game session. For example, use the session ID from the Steam Online Subsystem as a prefix or suffix for the ODIN Voice room (e.g., session_12345_proximity_chat or global_radio_session_12345). This allows multiple voice chat types (proximity, radio, etc.) within the same game instance while ensuring players only connect to others in their specific game session.
