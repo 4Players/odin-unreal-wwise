@@ -31,7 +31,9 @@ To test the project, please open up the `OddinWwiseMap` in `Content/_OdinContent
 After staring PIE, two Unreal game clients will connect both in multiplayer and in the ODIN Voice chat.
 
 > [!IMPORTANT]
-> When the clients are near each other, you will hear your own voice twice. This is due to Wwise playing audio from both clients, so it is expected behaviour. To only hear the audio from the perspective of one client, you can use the `M` button to mute or unmute one of the clients.
+> When the clients are near each other, you will hear your own voice twice. This is due to Wwise playing audio from both clients and playing back audio for two audio listeners, so it is expected behaviour. To only hear the audio from the perspective of one client, you can do the following:
+> 1. In the `Editor Preferences`, go to `Level Editor > Play > Multiplayer Options` and set `Run Under One Process` to false. This will make additional multiplayer clients start using their own processes, which will make Wwise playback audio as if a built version of your game was started.
+> 2. Use the `M` button to mute or unmute one of the clients. This way you can only hear the audio from one of the clients.
 
 ## Quick Start
 
