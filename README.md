@@ -37,13 +37,16 @@ After staring PIE, two Unreal game clients will connect both in multiplayer and 
 
 ## Quick Start
 
-The `AkOdinIputComponent` replaces the `OdinSynthComponent`, which is ordinarily used for Voice Chat playback in your game. The [header file](/Source/OdinTestProject/Public/AkOdinInputComponent.h) and the [source file](/Source/OdinTestProject/Private/AkOdinInputComponent.cpp) of the component have been added in the project's source directory.
+The `AkOdinIputComponent` replaces the `OdinSynthComponent`, which is ordinarily used for Voice Chat playback in your game. The workflow is as follows:
+1. In the `On Room Peer Joined` event, create an `AkOdinInputComponent` or use an existing one.
+2. Set the `Ak Audio Event` on the component to the `Play_VoiceChat` event created in Wwise.
+3. Construct a Decoder based on the `Sample Rate` and `Is Stereo` value of the Input Component and register the Decoder to the Peer Id (default Odin Voice Chat workflow)
+4. Call `Assign Odin Decoder` on the Input Component and supply the created Decoder.
+5. Finally, call `Post Associated Audio Input Event` on the Input Component to start playing back voice chat using Wwise.
+
+The [header file](/Source/OdinTestProject/Public/AkOdinInputComponent.h) and the [source file](/Source/OdinTestProject/Private/AkOdinInputComponent.cpp) of the component have been added in the project's source directory.
 
 It can be added to actors in your world, for example on Player Character's to enable attenuation (= the player's voice will originate from their Character's positions). See the `Content/OdinContent/Blueprints/BP_OdinCharacter.uasset` in the sample project for reference. The `Content/OdinContent/Blueprints/C_OdinClient.uasset` blueprint showcases how to start passing incoming Voice Chat data to Wwise using the provided adapter-class.
-
-> [!TIP]
-> Our [Wwise + ODIN Voice Chat guide](https://docs.4players.io/voice/unreal/next/guides/odin-wwise/) goes into more details on how to use the Ak Input Component and how to enable Wwise Voice Virtualization, so make sure to check it out.
-
 
 ### Remarks
 
