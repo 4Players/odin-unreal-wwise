@@ -2,7 +2,6 @@
 
 #include "AkOdinInputComponent.h"
 #include "OdinAudio/OdinSoundGenerator.h"
-#include "OdinSubsystem.h"
 
 void UAkOdinInputComponent::AssignOdinDecoder(UOdinDecoder* Decoder)
 {

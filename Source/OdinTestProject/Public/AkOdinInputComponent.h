@@ -9,6 +9,11 @@
 
 class UOdinDecoder;
 
+/**
+ * The UOdinAkInputComponent is designed for handling audio playback using the Wwise Audio Engine. Before calling
+ * `UAkAudioInputComponent::PostAssociatedAudioInputEvent` you'll need to have set the Odin Decoder using
+ * `UOdinAkInputComponent::AssignDecoder`. Otherwise it behaves as any other AkAudioInputComponent would.
+ */
 UCLASS(BlueprintType, Blueprintable, meta = (BlueprintSpawnableComponent))
 class UAkOdinInputComponent : public UAkAudioInputComponent
 {
@@ -16,18 +21,37 @@ class UAkOdinInputComponent : public UAkAudioInputComponent
 
 public:
 	/**
-	 * Assigns a UOdinDecoder object to the component and initializes the associated sound generator.
+	 * Assigns a decoder to the input component, initializes the necessary sound generator, and configures internal properties.
 	 *
-	 * @param Decoder Reference to a pointer of a UOdinDecoder object, which will be assigned to the component.
-	 *              Must not be null for successful assignment.
+	 * This method sets the provided UOdinDecoder as the decoder for this component. It initializes an OdinSoundGenerator and
+	 * ties it to the decoder for audio sample generation.
+	 *
+	 * @param Decoder A reference to the decoder to be assigned to the component. If the provided decoder is null, the method logs an error and exits without performing any operations.
 	 */
 	UFUNCTION(BlueprintCallable, Category = "Odin|Sound", meta=(Keywords="Connect,Decoder"))
 	void AssignOdinDecoder(UOdinDecoder* Decoder);
 
+	/**
+	 * Unassigns a decoder from the input component and destroys the connected sound generator. After calling this, the Input Component will generate silence and can be reused by reassigning it to another Decoder. 
+	 */
 	UFUNCTION(BlueprintCallable, Category = "Odin|Sound", meta=(Keywords="Disconnect,Clear"))
 	void UnassignOdinDecoder();
 
+	/**
+	 * Sets up the Wwise Audio configuration for this component. Requires a connected Odin Decoder to be able to
+	 * set up correctly, otherwise information on the used sample rate and channel count is missing.
+	 *
+	 * @param AudioFormat The output parameter that will hold the channel configuration details after retrieval.
+	 */
 	virtual void GetChannelConfig(AkAudioFormat& AudioFormat) override;
+	/**
+	 * Fills the audio buffer with generated ODIN audio samples based on the specified number of channels and sample rate.
+	 *
+	 * @param NumChannels The number of audio channels requested.
+	 * @param NumSamples The sample rate requested for audio generation.
+	 * @param BufferToFill A pointer to the buffer that will be filled with generated audio samples.
+	 * @return Returns true if the buffer was successfully filled with audio samples.
+	 */
 	virtual bool FillSamplesBuffer(uint32 NumChannels, uint32 NumSamples, float** BufferToFill) override;
 
 	/**
@@ -49,16 +73,20 @@ public:
 	UFUNCTION(BlueprintCallable, Category="Odin|Sound")
 	virtual void SetIsMuted(bool bNewIsMuted);
 
-	virtual void TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+	virtual void TickComponent(float DeltaTime, enum ELevelTick TickType,
+	                           FActorComponentTickFunction* ThisTickFunction) override;
 
 protected:
 	/**
-	 * A pointer to an Odin playback decoder object used to retrieve audio from Odin.
+	 * Used for processing audio input data  within the Odin audio system. Stores the decoder instance
+	 * assigned to the component, which is responsible for retrieving sound data from ODIN. The decoder’s
+	 * specific configuration settings (such as sample rate and channel count) determine how the audio data is
+	 * processed and managed.
 	 */
 	UPROPERTY(BlueprintReadOnly, Category = "Odin|Sound")
 	UOdinDecoder* PlaybackDecoder;
 	/**
-	 * A pointer to an Odin playback media object used to process or play back audio streams.
+	 * Buffer used to store audio samples temporarily during audio processing.
 	 */
 	UPROPERTY()
 	TArray<float> Buffer;
@@ -67,15 +95,21 @@ protected:
 	 */
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category="Odin|Sound")
 	UAkRtpc* VoiceActivityRtpc;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Odin|Sound")
+	/**
+	 * Audio Sample Rate. Is set to the connected Decoders sample rate on assignment.
+	 */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Odin|Sound")
 	int32 SampleRate = 48000;
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Odin|Sound")
+	/**
+	 * Number of Audio Channels. Is set to the connected Decoders number of audio channels on assignment.
+	 */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Odin|Sound")
 	bool bIsStereo = false;
-	
 
+	/**
+	 * OdinSoundGenerator instance, used to generate Odin-based audio samples.
+	 */
 	TUniquePtr<FOdinSoundGenerator> SoundGenerator;
+
 	FThreadSafeBool bIsMuted = false;
 };
-
-
