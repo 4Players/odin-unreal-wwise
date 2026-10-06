@@ -6,15 +6,15 @@ This Unreal Engine sample project shows how to implement and use a class that pa
 
 ## Odin Version
 
-The main branch of this repository uses the new ODIN Voice Plugin Version 2.x. If you're looking for the Wwise integration for ODIN Voice Version 1.x, please take a look at the  [Odin V1 Wwise Adapter Branch](https://github.com/4Players/odin-unreal-wwise/tree/v1).
+This project uses ODIN Voice Plugin Version 20208.0.0. If you're looking for the Wwise integration for ODIN Voice Version 1.x, please take a look at the  [Odin V1 Wwise Adapter Branch](https://github.com/4Players/odin-unreal-wwise/tree/v1).
 
 
 ## Pre-requisities
 
 The project uses the following Versions:
 
-- Unreal Engine Version 5.5.4
-- Wwise Version v2025.1.6
+- Unreal Engine Version 5.8
+- Wwise Version v2025.1.11
 
 ## Installation
 
@@ -37,12 +37,14 @@ After staring PIE, two Unreal game clients will connect both in multiplayer and 
 
 ## Quick Start
 
-The `AkOdinIputComponent` replaces the `OdinSynthComponent`, which is ordinarily used for Voice Chat playback in your game. The workflow is as follows:
+The `AkOdinInputComponent` replaces the `OdinSynthComponent`, which is ordinarily used for Voice Chat playback in your game. The workflow is as follows:
 1. In the `On Room Peer Joined` event, create an `AkOdinInputComponent` or use an existing one.
 2. Set the `Ak Audio Event` on the component to the `Play_VoiceChat` event created in Wwise.
 3. Construct a Decoder based on the `Sample Rate` and `Is Stereo` value of the Input Component and register the Decoder to the Peer Id (default Odin Voice Chat workflow)
-4. Call `Assign Odin Decoder` on the Input Component and supply the created Decoder.
+4. Call `Assign Odin Decoder` on the Input Component and supply the created Decoder. The sample rate and stereo values have to match the component.
 5. Finally, call `Post Associated Audio Input Event` on the Input Component to start playing back voice chat using Wwise.
+
+`Unassign Odin Decoder` will stop the Wwise event. To continue playback, assign a decoder and call `Post Associated Audio Input Event` again.
 
 The [header file](/Source/OdinTestProject/Public/AkOdinInputComponent.h) and the [source file](/Source/OdinTestProject/Private/AkOdinInputComponent.cpp) of the component have been added in the project's source directory.
 

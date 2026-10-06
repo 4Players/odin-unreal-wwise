@@ -1,12 +1,24 @@
 /* Copyright (c) 2022-2024 4Players GmbH. All rights reserved. */
 
 #include "AkOdinInputComponent.h"
+#include "Misc/ScopeLock.h"
+#include "OdinAudio/OdinDecoder.h"
 #include "OdinAudio/OdinSoundGenerator.h"
 
 void UAkOdinInputComponent::AssignOdinDecoder(UOdinDecoder* Decoder)
 {
-	if (nullptr == Decoder)
+	if (!IsValid(Decoder))
+	{
+		UE_LOG(LogTemp, Error, TEXT("UAkOdinInputComponent: cannot assign an invalid Odin decoder"));
 		return;
+	}
+
+	FScopeLock Lock(&AudioCriticalSection);
+	if (Decoder->SampleRate != SampleRate || Decoder->bStereo != bIsStereo)
+	{
+		UE_LOG(LogTemp, Error, TEXT("UAkOdinInputComponent: decoder sample rate and channel count must match the component"));
+		return;
+	}
 
 	SoundGenerator.Reset();
 	this->SoundGenerator = MakeUnique<FOdinSoundGenerator>();
@@ -17,6 +29,7 @@ void UAkOdinInputComponent::AssignOdinDecoder(UOdinDecoder* Decoder)
 
 void UAkOdinInputComponent::UnassignOdinDecoder()
 {
+	FScopeLock Lock(&AudioCriticalSection);
 	if (SoundGenerator.IsValid())
 	{
 		SoundGenerator->Close();
@@ -29,12 +42,13 @@ void UAkOdinInputComponent::TickComponent(float DeltaTime, enum ELevelTick TickT
 	FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
+	FScopeLock Lock(&AudioCriticalSection);
 	if (GetIsMuted() && SoundGenerator.IsValid())
 	{
-		// We need to manually pop audio from the decoder, otherwise we won't receive audio events for the decoder,
-		// which would prevent us from unmuting the component
 		const int32 RequestedNumSamples = Buffer.Num() > 0 ? Buffer.Num() : 512;
-		SoundGenerator->OnGenerateAudio(Buffer.GetData(), RequestedNumSamples);
+		TickBuffer.SetNum(RequestedNumSamples, EAllowShrinking::No);
+		FMemory::Memzero(TickBuffer.GetData(), TickBuffer.Num() * sizeof(float));
+		SoundGenerator->OnGenerateAudio(TickBuffer.GetData(), RequestedNumSamples);
 	}
 }
 
@@ -61,25 +75,15 @@ void UAkOdinInputComponent::GetChannelConfig(AkAudioFormat& AudioFormat)
 
 bool UAkOdinInputComponent::FillSamplesBuffer(uint32 NumChannels, uint32 NumSamples, float** BufferToFill)
 {
+	FScopeLock Lock(&AudioCriticalSection);
 	if (!SoundGenerator.IsValid() || !PlaybackDecoder)
 	{
 		return false;
 	}
 
 	const int32 RequestedTotalSamples = NumChannels * NumSamples;
-
-	if (GetIsMuted())
-	{
-		Buffer.SetNumZeroed(RequestedTotalSamples, EAllowShrinking::No);
-	}
-	else
-	{
-		if (Buffer.Num() != RequestedTotalSamples)
-		{
-			Buffer.SetNum(RequestedTotalSamples, EAllowShrinking::No);
-		}
-	}
-
+	Buffer.SetNum(RequestedTotalSamples, EAllowShrinking::No);
+	FMemory::Memzero(Buffer.GetData(), Buffer.Num() * sizeof(float));
 
 	const uint32 Result = SoundGenerator->OnGenerateAudio(Buffer.GetData(), RequestedTotalSamples);
 	if (Result != RequestedTotalSamples)
