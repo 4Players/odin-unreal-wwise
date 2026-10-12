@@ -10,14 +10,14 @@
     <Platform Name="Win64-arm64ec" />
   </Configurations>
   <Folder Name="/Engine/">
-    <Project Path="Intermediate/ProjectFiles/UE5.vcxproj" Id="a447b847-9670-3d7e-88f5-c50c44830813">
+    <Project Path="Intermediate/ProjectFiles/UE5.vcxproj" Id="3f9b3255-bc15-3071-906f-dfae4cfa057f">
       <BuildType Project="BuiltWithUnrealBuildTool" />
       <Platform Project="Win64" />
       <Build Project="false" />
     </Project>
   </Folder>
   <Folder Name="/Games/">
-    <Project Path="Intermediate/ProjectFiles/OdinTestProject.vcxproj" Id="a8d7b034-8ea1-3ae1-b318-53cd6812966d">
+    <Project Path="Intermediate/ProjectFiles/OdinTestProject.vcxproj" Id="ffea63d1-130e-3bec-81ca-b857cead7a70">
       <BuildType Solution="DebugGame Editor|*" Project="DebugGame_Editor" />
       <BuildType Solution="Development Editor|*" Project="Development_Editor" />
       <Platform Solution="*|Win64" Project="x64" />

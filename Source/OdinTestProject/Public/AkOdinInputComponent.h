@@ -86,11 +86,6 @@ protected:
 	UPROPERTY(BlueprintReadOnly, Category = "Odin|Sound")
 	UOdinDecoder* PlaybackDecoder;
 	/**
-	 * Buffer used to store audio samples temporarily during audio processing.
-	 */
-	UPROPERTY()
-	TArray<float> Buffer;
-	/**
 	 * A reference to a Wwise RTPC object that manages the voice activity state in an Odin audio session.
 	 */
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category="Odin|Sound")
@@ -110,8 +105,19 @@ protected:
 	 * OdinSoundGenerator instance, used to generate Odin-based audio samples.
 	 */
 	TUniquePtr<FOdinSoundGenerator> SoundGenerator;
-	TArray<float> TickBuffer;
+	/**
+	 * Interleaved samples popped in FillSamplesBuffer, before they're split into Wwise's per-channel buffers.
+	 */
+	TArray<float> WwiseCallbackBuffer;
+	/**
+	 * Receives the samples popped in TickComponent while Wwise isn't pulling audio, which are discarded.
+	 */
+	TArray<float> TickDiscardBuffer;
 	FCriticalSection AudioCriticalSection;
+	/**
+	 * Point in real time (FPlatformTime::Seconds()) up to which audio has been popped from the decoder.
+	 */
+	double PoppedUntilTime = 0.0;
 
 	FThreadSafeBool bIsMuted = false;
 };
